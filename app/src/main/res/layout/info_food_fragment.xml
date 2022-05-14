@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/custom_border"
+
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:gravity="center"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:text="Đánh giá: "
+            android:textSize="20dp"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"/>
+
+        <RatingBar
+            android:scaleX=".8"
+            android:scaleY=".8"
+            android:id="@+id/rating_star"
+            android:layout_width="wrap_content"
+            android:numStars="5"
+            android:stepSize="0.5"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
+        android:layout_height="150dp"
+        android:id="@+id/map"
+        tools:context=".MapsActivity"
+        android:name="com.google.android.gms.maps.SupportMapFragment" />
+
+
+    <TextView
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:textStyle="bold"
+        android:background="@drawable/custom_border"
+        android:text="Vị trí: 97 Man Thiện, Tp Hồ Chí Minh"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:textStyle="bold"
+        android:background="@drawable/custom_border"
+        android:text="Giá trung bình: 10k"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:textStyle="bold"
+        android:background="@drawable/custom_border"
+        android:text="Giờ mở cửa: 10:00 - 20:00"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>

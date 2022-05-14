@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:id="@+id/item_food_recommended"
+    android:padding="10dp"
+    android:background="@drawable/white_recommeded_btn"
+    android:elevation="3dp">
+
+
+    <ImageView
+
+        android:id="@+id/pic"
+        android:layout_width="100dp"
+        android:layout_height="80dp"
+        android:adjustViewBounds="true"
+        android:scaleType="centerInside"
+        app:srcCompat="@drawable/burger" />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="title"
+        android:layout_marginTop="5dp"
+        android:gravity="center"
+        android:textColor="#373B54"
+        android:textStyle="bold"
+        />
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/addBtn"
+            android:layout_width="27dp"
+            android:layout_height="24dp"
+            app:srcCompat="@drawable/star" />
+
+        <TextView
+            android:id="@+id/fee"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3.5"
+            android:layout_marginLeft="6dp"
+            android:textColor="#373B54"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

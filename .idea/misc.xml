@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="app/src/main/res/drawable-xhdpi/ic_launcher_background.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable-xhdpi/top_button_background.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable-xhdpi/white_background.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/background_white.xml" value="0.1375" />
+        <entry key="app/src/main/res/drawable/background_white1.xml" value="0.1375" />
+        <entry key="app/src/main/res/drawable/button_background_change.xml" value="0.1165" />
+        <entry key="app/src/main/res/drawable/circle_custom.xml" value="0.2205" />
+        <entry key="app/src/main/res/drawable/custom_border.xml" value="0.1215" />
+        <entry key="app/src/main/res/drawable/custom_border1.xml" value="0.122" />
+        <entry key="app/src/main/res/drawable/ic_back.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.137" />
+        <entry key="app/src/main/res/drawable/red_bar.xml" value="0.1305" />
+        <entry key="app/src/main/res/drawable/yellow_bar.xml" value="0.1305" />
+        <entry key="app/src/main/res/layout/activity_cart.xml" value="0.15912162162162163" />
+        <entry key="app/src/main/res/layout/activity_edit_account.xml" value="0.125" />
+        <entry key="app/src/main/res/layout/activity_forgot_password.xml" value="0.15912162162162163" />
+        <entry key="app/src/main/res/layout/activity_history_orders.xml" value="0.1304054054054054" />
+        <entry key="app/src/main/res/layout/activity_intro.xml" value="0.1489864864864865" />
+        <entry key="app/src/main/res/layout/activity_list_food.xml" value="0.1489864864864865" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.14222972972972972" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/activity_profile.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/activity_show_detail.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/activity_signup.xml" value="0.15912162162162163" />
+        <entry key="app/src/main/res/layout/activitysss.xml" value="0.1891891891891892" />
+        <entry key="app/src/main/res/layout/change_password.xml" value="0.125" />
+        <entry key="app/src/main/res/layout/change_position.xml" value="0.125" />
+        <entry key="app/src/main/res/layout/detail.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/detail_order.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/home_fragment.xml" value="0.15912162162162163" />
+        <entry key="app/src/main/res/layout/info_food_fragment.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/item_food.xml" value="0.1891891891891892" />
+        <entry key="app/src/main/res/layout/item_food_ordered.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/item_order.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/layout_bottom_cart.xml" value="0.125" />
+        <entry key="app/src/main/res/layout/layout_label_cart.xml" value="0.125" />
+        <entry key="app/src/main/res/layout/layout_verify_order.xml" value="0.10033783783783784" />
+        <entry key="app/src/main/res/layout/list_food_fragment.xml" value="0.15912162162162163" />
+        <entry key="app/src/main/res/layout/mainpagefrag.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/menulist.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/orders_fragment.xml" value="0.125" />
+        <entry key="app/src/main/res/layout/viewholder_cart.xml" value="0.1489864864864865" />
+        <entry key="app/src/main/res/layout/viewholder_category.xml" value="0.1489864864864865" />
+        <entry key="app/src/main/res/layout/viewholder_recommended.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/viewholder_recommended1.xml" value="0.1489864864864865" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

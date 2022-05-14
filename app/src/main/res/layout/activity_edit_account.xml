@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground"
+    tools:context=".SignupActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:background="@color/white"
+        app:navigationIcon="@drawable/ic_back"
+        app:theme="@style/TransparentToolbar">
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:paddingStart="0dp"
+            android:text="Chỉnh sửa tài khoản"
+            android:textAlignment="viewStart"
+            android:textColor="#03A9F4"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <ScrollView
+        android:layout_below="@id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:fillViewport="true"
+        android:fitsSystemWindows="true"
+        tools:context="in.insideandroid.template.LoginActivity">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:scrollbarThumbHorizontal="@null"
+            android:scrollbarThumbVertical="@null">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:id="@+id/signup_image_layout"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="8dp"
+                    android:orientation="vertical">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/image"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/dummy_image" />
+
+                    <ImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginStart="1dp"
+                        android:layout_marginTop="1dp"
+                        android:layout_marginEnd="1dp"
+                        android:layout_marginBottom="1dp"
+                        app:srcCompat="@drawable/ic_plus" />
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="16dp"
+                    android:text="Cập nhật ảnh đại "
+                    android:textColor="#696969"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    app:cardBackgroundColor="@color/colorTextInputBackground"
+                    app:cardCornerRadius="24dp"
+                    app:cardElevation="0dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_email"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginRight="12dp"
+                        android:background="@android:color/transparent"
+                        android:drawableStart="@drawable/ic_person"
+                        android:drawableLeft="@drawable/ic_baseline_place_24"
+                        android:drawablePadding="12dp"
+                        android:hint="Tên đăng nhập"
+                        android:imeOptions="actionNext"
+                        android:inputType="textAutoComplete"
+                        android:minWidth="320dp"
+                        android:minHeight="45dp"
+                        android:singleLine="true" />
+                </androidx.cardview.widget.CardView>
+
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    app:cardBackgroundColor="@color/colorTextInputBackground"
+                    app:cardCornerRadius="24dp"
+                    app:cardElevation="0dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_email"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginRight="12dp"
+                        android:background="@android:color/transparent"
+                        android:drawableStart="@drawable/ic_mail"
+                        android:drawableLeft="@drawable/ic_baseline_place_24"
+                        android:drawablePadding="12dp"
+                        android:hint="Email"
+                        android:imeOptions="actionNext"
+                        android:inputType="textAutoComplete"
+                        android:minWidth="320dp"
+                        android:minHeight="45dp"
+                        android:singleLine="true" />
+                </androidx.cardview.widget.CardView>
+
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    app:cardBackgroundColor="@color/colorTextInputBackground"
+                    app:cardCornerRadius="24dp"
+                    app:cardElevation="0dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_email"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginRight="12dp"
+                        android:background="@android:color/transparent"
+                        android:drawableStart="@drawable/ic_phone"
+                        android:drawableLeft="@drawable/ic_baseline_place_24"
+                        android:drawablePadding="12dp"
+                        android:hint="SDT"
+                        android:imeOptions="actionNext"
+                        android:inputType="textAutoComplete"
+                        android:minWidth="320dp"
+                        android:minHeight="45dp"
+                        android:singleLine="true" />
+                </androidx.cardview.widget.CardView>
+
+
+                <Button
+                    android:id="@+id/button_signin"
+                    style="@style/Button1"
+                    android:layout_width="342dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="16dp"
+                    android:text="Cập nhật" />
+
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+
+    </ScrollView>
+</RelativeLayout>

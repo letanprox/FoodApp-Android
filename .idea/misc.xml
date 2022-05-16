@@ -8,12 +8,15 @@
         <entry key="app/src/main/res/drawable-xhdpi/white_background.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/background_white.xml" value="0.1375" />
         <entry key="app/src/main/res/drawable/background_white1.xml" value="0.1375" />
+        <entry key="app/src/main/res/drawable/bg_round.xml" value="0.1165" />
         <entry key="app/src/main/res/drawable/button_background_change.xml" value="0.1165" />
+        <entry key="app/src/main/res/drawable/circle.xml" value="0.1025" />
         <entry key="app/src/main/res/drawable/circle_custom.xml" value="0.2205" />
         <entry key="app/src/main/res/drawable/custom_border.xml" value="0.1215" />
         <entry key="app/src/main/res/drawable/custom_border1.xml" value="0.122" />
         <entry key="app/src/main/res/drawable/ic_back.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.137" />
+        <entry key="app/src/main/res/drawable/img.xml" value="0.1025" />
         <entry key="app/src/main/res/drawable/red_bar.xml" value="0.1305" />
         <entry key="app/src/main/res/drawable/yellow_bar.xml" value="0.1305" />
         <entry key="app/src/main/res/layout/activity_cart.xml" value="0.15912162162162163" />
@@ -23,9 +26,10 @@
         <entry key="app/src/main/res/layout/activity_history_orders.xml" value="0.1304054054054054" />
         <entry key="app/src/main/res/layout/activity_intro.xml" value="0.1489864864864865" />
         <entry key="app/src/main/res/layout/activity_list_food.xml" value="0.1489864864864865" />
-        <entry key="app/src/main/res/layout/activity_login.xml" value="0.14222972972972972" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_profile.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/activity_sample_google_auth.xml" value="0.16216216216216217" />
         <entry key="app/src/main/res/layout/activity_show_detail.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_signup.xml" value="0.15912162162162163" />
         <entry key="app/src/main/res/layout/activitysss.xml" value="0.1891891891891892" />
@@ -45,6 +49,7 @@
         <entry key="app/src/main/res/layout/mainpagefrag.xml" value="0.1" />
         <entry key="app/src/main/res/layout/menulist.xml" value="0.1" />
         <entry key="app/src/main/res/layout/orders_fragment.xml" value="0.125" />
+        <entry key="app/src/main/res/layout/progress_dialog.xml" value="0.1097972972972973" />
         <entry key="app/src/main/res/layout/viewholder_cart.xml" value="0.1489864864864865" />
         <entry key="app/src/main/res/layout/viewholder_category.xml" value="0.1489864864864865" />
         <entry key="app/src/main/res/layout/viewholder_recommended.xml" value="0.25" />

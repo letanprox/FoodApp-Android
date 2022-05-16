@@ -15,6 +15,7 @@ import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,10 +34,13 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ProfileActivity extends AppCompatActivity implements OnMapReadyCallback{
 
@@ -45,6 +49,9 @@ public class ProfileActivity extends AppCompatActivity implements OnMapReadyCall
     TextView changepass_btn, changeposition_btn,txt_address, getposition_btn;
     LinearLayout setting_btn;
     AppCompatImageView logout_btn;
+
+    ImageView circleImageView;
+    TextView name, email, sdt;
 
     GoogleMap map;
     double x;
@@ -69,7 +76,18 @@ public class ProfileActivity extends AppCompatActivity implements OnMapReadyCall
         Log.e("xxx",  String.valueOf(estimatedDriveTimeInMinutes));
 
 
+        circleImageView = findViewById(R.id.imageView2);
+        name = findViewById(R.id.textView);
+        email = findViewById(R.id.textView2);
+        sdt = findViewById(R.id.textView4);
 
+        name.setText(MainActivity.TEN);
+        email.setText(MainActivity.EMAIL);
+        sdt.setText(MainActivity.SDT);
+
+        Picasso.get()
+                .load(MainActivity.ANH)
+                .into(circleImageView);
 
         SupportMapFragment supportMapFragment1 = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map_user_local);
         supportMapFragment1.getMapAsync((OnMapReadyCallback) this);
@@ -146,6 +164,7 @@ public class ProfileActivity extends AppCompatActivity implements OnMapReadyCall
         logout_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                MainActivity.database.QueryData("DELETE FROM Userx");
                 Toast.makeText(getApplicationContext(), "logout", Toast.LENGTH_SHORT).show();
                 startActivity(iA);
             }

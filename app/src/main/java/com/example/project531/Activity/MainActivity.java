@@ -7,20 +7,27 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.fragment.app.FragmentManager;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.project531.Database;
 import com.example.project531.DonHang.HistoryOrdersActivity;
 import com.example.project531.Home.HomeFragment;
 import com.example.project531.Home.OrdersFragment;
+import com.example.project531.LoginActivity;
 import com.example.project531.ProfileActivity;
 import com.example.project531.R;
+import com.example.project531.SignupActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import java.net.URLDecoder;
 
 public class MainActivity extends AppCompatActivity {
     private RecyclerView.Adapter adapter, adapter2;
@@ -33,8 +40,14 @@ public class MainActivity extends AppCompatActivity {
     ImageView icon_book_mark, icon_home;
     TextView txt_icon_book_mark, txt_icon_home;
 
+    public static Database database;
+
     public static String connectURL = "http://192.168.1.105:4000";
-    public static int ID_USER = 1;
+    public static int ID_USER = 0;
+    public static String ANH = "";
+    public static String TEN = "";
+    public static String SDT = "";
+    public static String EMAIL = "";
     public static String CURRENT_LOCATION = "";
     public static double X_LA;
     public static double Y_LO;
@@ -44,6 +57,24 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        STARTDATABASE();
+
+        Cursor cursor = MainActivity.database.GetData("SELECT * FROM Userx");
+        while (cursor.moveToNext()){
+            ID_USER = cursor.getInt(0);
+            TEN = cursor.getString(1);
+            ANH = cursor.getString(2);
+            SDT = cursor.getString(3);
+            EMAIL = cursor.getString(5);
+        }
+
+        Log.e("jjj", ANH);
+
+        if(ID_USER == 0){
+            Intent ix = new Intent(this, LoginActivity.class);
+            startActivity(ix);
+        }
 
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
@@ -148,6 +179,17 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+    public void STARTDATABASE(){
+            database = new Database(this,"FOODAPP.sqlite", null, 1);
+
+            database.QueryData("CREATE TABLE IF NOT EXISTS Userx(" +
+                    "ID  INT, " +
+                    "TEN VARCHAR(200), " +
+                    "ANH VARCHAR(400), " +
+                    "SDT VARCHAR(100), " +
+                    "MATKHAU VARCHAR(100), " +
+                    "EMAIL VARCHAR(100) )");
+    }
 
 
 

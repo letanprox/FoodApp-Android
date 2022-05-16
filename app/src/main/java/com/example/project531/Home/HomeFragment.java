@@ -1,12 +1,15 @@
 package com.example.project531.Home;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -26,6 +29,7 @@ import com.example.project531.Domain.FoodDomain;
 import com.example.project531.Interface.ImplementJson;
 import com.example.project531.ProfileActivity;
 import com.example.project531.R;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -36,7 +40,7 @@ import java.util.ArrayList;
 public class HomeFragment extends Fragment {
 
     ImageView avatar_btn;
-    TextView see_more_btn;
+    TextView see_more_btn, textView5, textView6;
     private RecyclerView.Adapter adapter, adapter2;
     private RecyclerView recyclerViewCategotyList, recyclerViewPopularList;
 
@@ -55,7 +59,23 @@ public class HomeFragment extends Fragment {
         recyclerViewCategotyList = view.findViewById(R.id.view1);
         recyclerViewPopularList = view.findViewById(R.id.view2);
 
+
         avatar_btn = view.findViewById(R.id.avatar_btn);
+        textView5 = view.findViewById(R.id.textView5);
+        textView6 = view.findViewById(R.id.textView6);
+
+        textView5.setText("Xin chào " + MainActivity.TEN);
+
+        try {
+            Picasso.get()
+                    .load(MainActivity.ANH)
+                    .into(avatar_btn);
+        }catch (Exception e){
+
+        }
+
+
+
         avatar_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

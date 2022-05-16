@@ -24,6 +24,9 @@ import com.example.ChangePasswordDialog;
 import com.example.ChangePositionDialog;
 import com.example.project531.Activity.MainActivity;
 import com.example.project531.Interface.ILocation;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -32,8 +35,11 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
@@ -60,10 +66,15 @@ public class ProfileActivity extends AppCompatActivity implements OnMapReadyCall
     SupportMapFragment supportMapFragment;
     FusedLocationProviderClient client;
 
+    FirebaseAuth firebaseAuth;
+    GoogleSignInClient googleSignInClient;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+
+
 
         float[] results = new float[1];
         Location.distanceBetween(100, 50,
@@ -164,6 +175,27 @@ public class ProfileActivity extends AppCompatActivity implements OnMapReadyCall
         logout_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
+
+                googleSignInClient = GoogleSignIn.getClient(ProfileActivity.this, GoogleSignInOptions.DEFAULT_SIGN_IN);
+
+                googleSignInClient.signOut().addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if(task.isSuccessful()){
+                            try {
+                                firebaseAuth.signOut();
+                                finish();
+                            }catch (Exception e){
+
+                            }
+
+                        }
+                    }
+                });
+
+
                 MainActivity.database.QueryData("DELETE FROM Userx");
                 Toast.makeText(getApplicationContext(), "logout", Toast.LENGTH_SHORT).show();
                 startActivity(iA);

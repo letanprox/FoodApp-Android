@@ -65,7 +65,7 @@
                         android:id="@+id/txt_icon_home"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Home"
+                        android:text="Trang Chủ"
                         android:textAlignment="center"
                         android:textColor="#676767"
                         android:textSize="12sp" />
@@ -118,7 +118,7 @@
                         android:id="@+id/txt_icon_book_mark"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Settings"
+                        android:text="Lưu"
                         android:textAlignment="center"
                         android:textColor="#676767"
                         android:textSize="12sp" />

@@ -2,6 +2,7 @@ package com.example.project531.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import androidx.fragment.app.FragmentManager;
@@ -28,6 +29,8 @@ import com.example.project531.SignupActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.net.URLDecoder;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private RecyclerView.Adapter adapter, adapter2;
@@ -52,6 +55,8 @@ public class MainActivity extends AppCompatActivity {
     public static double X_LA;
     public static double Y_LO;
 
+
+    List<Fragment> fragmentList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,6 +102,17 @@ public class MainActivity extends AppCompatActivity {
         txt_icon_book_mark.setTextColor(Color.parseColor("#777777"));
         txt_icon_home.setTextColor(Color.parseColor("#ff3232"));
 
+
+
+
+        HomeFragment homeFragment = new HomeFragment();
+        OrdersFragment ordersFragment = new OrdersFragment();
+
+        fragmentList.add(homeFragment);
+        fragmentList.add(ordersFragment);
+
+
+
         btn_home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -104,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
                 icon_home.setImageResource(R.drawable.ic_baseline_home_27_red);
                 txt_icon_book_mark.setTextColor(Color.parseColor("#777777"));
                 txt_icon_home.setTextColor(Color.parseColor("#ff3232"));
-                switchFragment(new HomeFragment());
+                displayFragment(homeFragment);
             }
         });
 
@@ -115,12 +131,14 @@ public class MainActivity extends AppCompatActivity {
                 icon_home.setImageResource(R.drawable.ic_baseline_home_27_black);
                 txt_icon_book_mark.setTextColor(Color.parseColor("#ff3232"));
                 txt_icon_home.setTextColor(Color.parseColor("#777777"));
-                switchFragment(new OrdersFragment());
+                displayFragment(ordersFragment);
             }
         });
 
+        displayFragment(homeFragment);
 
-       getSupportFragmentManager().beginTransaction().add(R.id.home_fragment, new HomeFragment()).commit();
+
+       //getSupportFragmentManager().beginTransaction().add(R.id.home_fragment, new HomeFragment()).commit();
 
         //Intent i = new Intent(this, ForgotPasswordActivity.class); startActivity(i);
         cartBtn = (FloatingActionButton) findViewById(R.id.cartBtn);
@@ -161,7 +179,32 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+    private int getFragmentIndex(Fragment fragment) {
+        int index = -1;
+        for (int i = 0; i < fragmentList.size(); i++) {
+            if (fragment.hashCode() == fragmentList.get(i).hashCode()){
+                return i;
+            }
+        }
+        return index;
+    }
 
+    private void displayFragment(Fragment fragment) {
+        int index = getFragmentIndex(fragment);
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        if (fragment.isAdded()) { // if the fragment is already in container
+            transaction.show(fragment);
+        } else { // fragment needs to be added to frame container
+            transaction.add(R.id.home_fragment, fragment);
+        }
+        // hiding the other fragments
+        for (int i = 0; i < fragmentList.size(); i++) {
+            if (fragmentList.get(i).isAdded() && i != index) {
+                transaction.hide(fragmentList.get(i));
+            }
+        }
+        transaction.commit();
+    }
 
 
     public void switchFragment(Fragment fragment){

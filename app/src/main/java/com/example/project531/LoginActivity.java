@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
 import com.example.project531.API.ParseURL;
 import com.example.project531.Activity.MainActivity;
 import com.example.project531.Interface.ImplementJson;
@@ -74,8 +75,6 @@ public class LoginActivity extends AppCompatActivity {
         ).requestIdToken("901183913660-4gcebqh0im7ehkmu4pmf752cs5lvosh7.apps.googleusercontent.com")
                 .requestEmail().build();
 
-//        .requestIdToken("427241214844-70l2ik0qqimmll30n10d9pv6ijrffmvc.apps.googleusercontent.com")
-
         googleSignInClient = GoogleSignIn.getClient(LoginActivity.this, googleSignInOptions);
 
 
@@ -97,7 +96,7 @@ public class LoginActivity extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
         if(firebaseUser != null){
-            startActivity(new Intent(LoginActivity.this, SampleGoogleAuthActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+//            startActivity(new Intent(LoginActivity.this, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
         }
 
 
@@ -151,7 +150,7 @@ public class LoginActivity extends AppCompatActivity {
                 progressDialog.setContentView(R.layout.progress_dialog);
                 progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
 
-                Log.e("xxx", MainActivity.connectURL + "/users/get?ten="+et_username.getText().toString()+"&matkhau="+et_password.getText().toString());
+//                Log.e("xxx", MainActivity.connectURL + "/users/get?ten="+et_username.getText().toString()+"&matkhau="+et_password.getText().toString());
                 parseURL.ParseData(MainActivity.connectURL + "/users/get?ten="+et_username.getText().toString()+"&matkhau="+et_password.getText().toString(), new ImplementJson() {
                     @Override
                     public void Done(JSONArray jsonArray) {
@@ -213,7 +212,55 @@ public class LoginActivity extends AppCompatActivity {
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if(task.isSuccessful()){
                                     //REDIRECT
-                                    startActivity(new Intent(LoginActivity.this, SampleGoogleAuthActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+
+                                    firebaseAuth = FirebaseAuth.getInstance();
+                                    FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+                                    if(firebaseUser != null){
+                                        Log.e("anh dai dien:" , String.valueOf(firebaseUser.getPhotoUrl()));
+
+
+
+                                        parseURL.ParseData(MainActivity.connectURL + "/googleauth?ten="+String.valueOf(firebaseUser.getDisplayName())+"&email="+String.valueOf(firebaseUser.getEmail())+"&anh="+String.valueOf(firebaseUser.getPhotoUrl()), new ImplementJson() {
+                                            @Override
+                                            public void Done(JSONArray jsonArray) {
+                                                try{
+                                                    for (int i = 0; i < jsonArray.length(); i++) {
+                                                        JSONObject data = null;
+                                                        data = jsonArray.getJSONObject(i);
+                                                        int ID = data.getInt("ID");
+                                                        Log.e("ID", String.valueOf(ID));
+                                                        MainActivity.database.INSERT_USER(
+                                                                data.getInt("ID"),
+                                                                data.getString("TEN"),
+                                                                data.getString("ANH"),
+                                                                data.getString("SDT"),
+                                                                data.getString("MATKHAU"),
+                                                                data.getString("EMAIL")
+                                                        );
+                                                    }
+                                                    try {
+                                                        progressDialog.dismiss();
+                                                    }catch (Exception e){
+
+                                                    }
+
+                                                    if(jsonArray.length() == 0){
+                                                        Toast.makeText(getApplicationContext(), "Fail to Login Acount!!", Toast.LENGTH_LONG).show();
+                                                    }else{
+                                                        Intent ok = new Intent(LoginActivity.this, MainActivity.class);
+                                                        startActivity(ok);
+                                                    }
+                                                } catch (JSONException e) {
+                                                    e.printStackTrace();
+                                                }
+                                            }
+                                        });
+
+
+
+                                    }
+
+                                    //startActivity(new Intent(LoginActivity.this, SampleGoogleAuthActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
                                 }else {
                                     Log.e("ooo", task.getException().getMessage());
                                 }

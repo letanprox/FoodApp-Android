@@ -37,8 +37,9 @@ public class SampleGoogleAuthActivity extends AppCompatActivity {
         imageView = findViewById(R.id.image_view);
         button = findViewById(R.id.button_log);
 
-        firebaseAuth = FirebaseAuth.getInstance();
 
+
+        firebaseAuth = FirebaseAuth.getInstance();
         FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
         if(firebaseUser != null){
             Glide.with(SampleGoogleAuthActivity.this).load(firebaseUser.getPhotoUrl()).into(imageView);
@@ -46,9 +47,9 @@ public class SampleGoogleAuthActivity extends AppCompatActivity {
         }
 
 
+
+
         googleSignInClient = GoogleSignIn.getClient(SampleGoogleAuthActivity.this, GoogleSignInOptions.DEFAULT_SIGN_IN);
-
-
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

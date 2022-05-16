@@ -1,16 +1,16 @@
 <resources>
     <string name="app_name">Food App</string>
-    <string name="hint_username">Username</string>
-    <string name="hint_password">Password</string>
-    <string name="button_sign_in">Sign in</string>
+    <string name="hint_username">Tên</string>
+    <string name="hint_password">Mật khẩu</string>
+    <string name="button_sign_in">Đăng nhập</string>
     <string name="button_sign_up">Sign up</string>
     <string name="button_send">Send</string>
-    <string name="text_forgot_password">Forgot password?</string>
-    <string name="text_signin_message">Hello, sign in to your account</string>
-    <string name="text_signin_social_media">Or Sign in using social media</string>
-    <string name="text_signup_social_media">Or Sign up using social media</string>
-    <string name="text_signin_signup">Don\'t have an account? <b>Sign up</b></string>
-    <string name="text_signup_terms">By signing up, you agree to our <b>terms and conditions</b></string>
+    <string name="text_forgot_password">Quên mật khẩu?</string>
+    <string name="text_signin_message">Xin Chào! Vui lòng đăng nhập</string>
+    <string name="text_signin_social_media">Hoặc đăng nhập với Google</string>
+    <string name="text_signup_social_media">Hoặc đăng nhập với Google</string>
+    <string name="text_signin_signup">Không có tài khoản? <b>Đăng ký</b></string>
+    <string name="text_signup_terms">Khi đăng ký, bạn đã chấp nhận <b>Điều khoản và Dịch vụ</b></string>
     <string name="text_signup_message">Hello, let\'s set up your account</string>
 
     <string name="text_forgot_password_title">Forgot password? No worries</string>

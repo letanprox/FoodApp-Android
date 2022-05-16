@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.project531">
 
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -10,12 +11,16 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Project531">
+        android:theme="@style/Theme.Project531"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".Activity.CateListActivity"
+            android:exported="false" />
         <activity
             android:name=".EditAccountActivity"
             android:exported="false" />
         <activity
-            android:name=".HistoryOrdersActivity"
+            android:name=".DonHang.HistoryOrdersActivity"
             android:exported="false" />
 
         <meta-data
@@ -23,7 +28,7 @@
             android:value="AIzaSyAOgBomI03GHQ4C1qZJ2xdBy_U11eq3tR8" />
 
         <activity
-            android:name=".ListFoodActivity"
+            android:name=".Activity.ListFoodActivity"
             android:exported="false" />
         <activity
             android:name=".ForgotPasswordActivity"
@@ -38,8 +43,8 @@
         <activity
             android:name=".LoginActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Activity.ShowDetailActivity" />
-        <activity android:name=".Activity.CartActivity" />
+        <activity android:name=".SanPham.ShowDetailActivity" />
+        <activity android:name=".SanPham.CartActivity" />
         <activity android:name=".Activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -1,6 +1,5 @@
-package com.example.project531.Activity;
+package com.example.project531.SanPham;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -8,21 +7,24 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.MenuItem;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
 
-import com.example.project531.Adapter.CartListAdapter;
-import com.example.project531.Adapter.FoodListAdapter;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.Volley;
+import com.example.project531.Activity.MainActivity;
 import com.example.project531.Adapter.FoodListAdapterOrdered;
 import com.example.project531.Domain.FoodItem;
 import com.example.project531.Helper.ManagementCart;
-import com.example.project531.Interface.ChangeNumberItemsListener;
+import com.example.project531.Interface.ImplementJson;
+import com.example.project531.API.ParseURL;
 import com.example.project531.R;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import org.json.JSONArray;
 
 import java.util.ArrayList;
 
@@ -30,11 +32,19 @@ public class CartActivity extends AppCompatActivity {
     private RecyclerView.Adapter adapter;
     private RecyclerView recyclerViewList;
     private ManagementCart managementCart;
-    private TextView totalFeeTxt, taxTxt, deliveryTxt, totalTxt, emptyTxt;
+    private TextView totalFeeTxt, taxTxt, deliveryTxt, totalTxt, emptyTxt, payment_btn;
     private double tax;
     private ScrollView scrollView;
 
+
+    ArrayList<FoodItem> foodlist;
+    double pricetotal;
+
     private RecyclerView rcv_list_order;
+
+
+    private RequestQueue mQueue;
+    ParseURL parseURL;
 
 
     @Override
@@ -50,12 +60,15 @@ public class CartActivity extends AppCompatActivity {
         calculateCard();
 
 
+        mQueue = Volley.newRequestQueue(this);
+        parseURL = new ParseURL(mQueue);
+
+
         Intent i = new Intent(this, ShowDetailActivity.class);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 startActivity(i);
             }
         });
@@ -64,6 +77,36 @@ public class CartActivity extends AppCompatActivity {
         rcv_list_order = findViewById(R.id.rcv_list_order);
         recyclerViewListFood();
 
+        payment_btn = findViewById(R.id.payment_btn);
+        payment_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String sp = "";
+                for (int i = 0; i < foodlist.size(); i++){
+                    if(i == foodlist.size() - 1)
+                        sp = sp + foodlist.get(i).getId()+"i"+foodlist.get(i).getNumberInCart();
+                    else
+                        sp = sp + foodlist.get(i).getId()+"i"+foodlist.get(i).getNumberInCart()+"-";
+                }
+                Log.e("sp", sp);
+
+                parseURL.ParseData(MainActivity.connectURL+"/donhang/insert?gia="+pricetotal+"&sp="+sp, new ImplementJson() {
+                    @Override
+                    public void Done(JSONArray jsonArray) {
+//                        try{
+//
+//                        } catch (JSONException e) {
+//                            e.printStackTrace();
+//                        }
+                    }
+                });
+
+
+
+
+            }
+        });
+
     }
 
     private void recyclerViewListFood() {
@@ -71,10 +114,15 @@ public class CartActivity extends AppCompatActivity {
 
         rcv_list_order.setLayoutManager(linearLayoutManager);
 
-        ArrayList<FoodItem> foodlist = new ArrayList<>();
-        foodlist.add(new FoodItem("Pepperoni pizza", "pizza1", "slices pepperoni ,mozzarella cheese, fresh oregano,  ground black pepper, pizza sauce", 13.0, 5, 0));
-        foodlist.add(new FoodItem("Chesse Burger", "burger", "beef, Gouda Cheese, Special sauce, Lettuce, tomato ", 15.20, 4, 2));
-        foodlist.add(new FoodItem("Vagetable pizza", "pizza3", " olive oil, Vegetable oil, pitted Kalamata, cherry tomatoes, fresh oregano, basil", 11.0, 3, 3));
+        pricetotal = (double) getIntent().getSerializableExtra("pricetotal");
+        deliveryTxt = findViewById(R.id.deliveryTxt);
+        totalFeeTxt = findViewById(R.id.totalFeeTxt);
+        totalTxt = findViewById(R.id.totalTxt);
+        deliveryTxt.setText(String.valueOf(10.000));
+        totalFeeTxt.setText(String.valueOf(pricetotal));
+        totalTxt.setText(String.valueOf(pricetotal+10.000));
+
+        foodlist  = (ArrayList<FoodItem>) getIntent().getSerializableExtra("listfood");
 
         adapter = new FoodListAdapterOrdered(foodlist);
         rcv_list_order.setAdapter(adapter);

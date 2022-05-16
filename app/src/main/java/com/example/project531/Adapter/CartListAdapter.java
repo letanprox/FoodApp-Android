@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.project531.Domain.FoodDomain;
 import com.example.project531.Helper.ManagementCart;
-import com.example.project531.Interface.ChangeNumberItemsListener;
+import com.example.project531.Trash.ChangeNumberItemsListener;
 import com.example.project531.R;
 
 import java.util.ArrayList;

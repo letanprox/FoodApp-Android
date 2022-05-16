@@ -1,4 +1,4 @@
-package com.example.project531;
+package com.example.project531.SanPham;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -15,6 +15,7 @@ import com.example.project531.Adapter.FoodListAdapter;
 import com.example.project531.Adapter.RecommendedAdapter;
 import com.example.project531.Domain.FoodDomain;
 import com.example.project531.Domain.FoodItem;
+import com.example.project531.R;
 
 import java.util.ArrayList;
 
@@ -23,36 +24,28 @@ public class ListFoodFragment extends Fragment {
 
     private RecyclerView rcv_food_list;
     private RecyclerView.Adapter adapter;
+    private RecyclerView.Adapter adapterZero;
 
     ArrayList<FoodItem> foodlist;
 
-    public ListFoodFragment(ArrayList<FoodItem> foodlist) {
+    public ListFoodFragment(ArrayList<FoodItem> foodlist, RecyclerView.Adapter adapterZero) {
         this.foodlist = foodlist;
+        this.adapterZero = adapterZero;
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.list_food_fragment, container, false);
-
         rcv_food_list = view.findViewById(R.id.rcv_list_food);
         recyclerViewListFood();
-
         return  view;
     }
 
 
     private void recyclerViewListFood() {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
-
         rcv_food_list.setLayoutManager(linearLayoutManager);
-
-//        ArrayList<FoodItem> foodlist = new ArrayList<>();
-//        foodlist.add(new FoodItem("Pepperoni pizza", "pizza1", "slices pepperoni ,mozzarella cheese, fresh oregano,  ground black pepper, pizza sauce", 13.0, 5, 0));
-//        foodlist.add(new FoodItem("Chesse Burger", "burger", "beef, Gouda Cheese, Special sauce, Lettuce, tomato ", 15.20, 4, 2));
-//        foodlist.add(new FoodItem("Vagetable pizza", "pizza3", " olive oil, Vegetable oil, pitted Kalamata, cherry tomatoes, fresh oregano, basil", 11.0, 3, 3));
-
-        adapter = new FoodListAdapter(foodlist);
-        rcv_food_list.setAdapter(adapter);
+        rcv_food_list.setAdapter(adapterZero);
     }
 }

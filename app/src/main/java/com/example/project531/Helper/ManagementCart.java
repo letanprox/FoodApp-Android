@@ -4,7 +4,7 @@ import android.content.Context;
 import android.widget.Toast;
 
 import com.example.project531.Domain.FoodDomain;
-import com.example.project531.Interface.ChangeNumberItemsListener;
+import com.example.project531.Trash.ChangeNumberItemsListener;
 
 import java.util.ArrayList;
 

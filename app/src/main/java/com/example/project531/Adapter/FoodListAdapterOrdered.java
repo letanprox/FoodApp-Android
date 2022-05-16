@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.project531.Domain.FoodItem;
 import com.example.project531.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -19,9 +20,11 @@ public class FoodListAdapterOrdered extends RecyclerView.Adapter<FoodListAdapter
 
     ArrayList<FoodItem> itemArrayList;
 
+
     public FoodListAdapterOrdered(ArrayList<FoodItem> itemArrayList) {
         this.itemArrayList = itemArrayList;
     }
+
 
 
     @NonNull
@@ -35,13 +38,20 @@ public class FoodListAdapterOrdered extends RecyclerView.Adapter<FoodListAdapter
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.title_food.setText(itemArrayList.get(position).getTitle());
         holder.price_food.setText(String.valueOf(itemArrayList.get(position).getFee()) + "đ");
+        holder.numberItemTxt.setText("x"+String.valueOf(itemArrayList.get(position).getNumberInCart()));
+//        int drawableReourceId = holder.itemView.getContext().getResources()
+//                .getIdentifier(itemArrayList.get(position).getPic(), "drawable",
+//                        holder.itemView.getContext().getPackageName());
+//
+//        Glide.with(holder.itemView.getContext())
+//                .load(drawableReourceId)
+//                .into(holder.image_food);
 
-        int drawableReourceId = holder.itemView.getContext().getResources()
-                .getIdentifier(itemArrayList.get(position).getPic(), "drawable",
-                        holder.itemView.getContext().getPackageName());
 
-        Glide.with(holder.itemView.getContext())
-                .load(drawableReourceId)
+        Picasso.get()
+                .load(itemArrayList.get(position).getPic())
+                .fit()
+                .centerCrop()
                 .into(holder.image_food);
     }
 

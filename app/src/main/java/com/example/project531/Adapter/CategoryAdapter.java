@@ -1,6 +1,7 @@
 package com.example.project531.Adapter;
 
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,9 +12,10 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
+import com.example.project531.Activity.CateListActivity;
 import com.example.project531.Domain.CategoryDomain;
 import com.example.project531.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -35,37 +37,29 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.categoryName.setText(categoryDomains.get(position).getTitle());
-        String picUrl="";
-        switch (position) {
-            case 0: {
-                picUrl = "cat_1";
-                break;
-            }
-            case 1: {
-                picUrl = "cat_2";
-                break;
-            }
-            case 2: {
-                picUrl = "cat_3";
-                break;
-            }
-            case 3: {
-                picUrl = "cat_4";
-                break;
-            }
-            case 4: {
-                picUrl = "cat_5";
-                break;
-            }
-        }
 
-        int drawableReourceId = holder.itemView.getContext().getResources()
-                .getIdentifier(picUrl, "drawable",
-                        holder.itemView.getContext().getPackageName());
-
-        Glide.with(holder.itemView.getContext())
-                .load(drawableReourceId)
+        Picasso.get()
+                .load(categoryDomains.get(position).getPic())
+                .fit()
+                .centerCrop()
                 .into(holder.categoryPic);
+
+
+        holder.mainLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(holder.itemView.getContext(), CateListActivity.class);
+                intent.putExtra("object", categoryDomains.get(position));
+                holder.itemView.getContext().startActivity(intent);
+            }
+        });
+//        int drawableReourceId = holder.itemView.getContext().getResources()
+//                .getIdentifier(picUrl, "drawable",
+//                        holder.itemView.getContext().getPackageName());
+//
+//        Glide.with(holder.itemView.getContext())
+//                .load(drawableReourceId)
+//                .into(holder.categoryPic);
 
     }
 

@@ -1,7 +1,10 @@
 package com.example.project531.Domain;
 
-public class FoodItem {
+import java.io.Serializable;
 
+public class FoodItem implements Serializable {
+
+    private int id;
     private String title;
     private String pic;
     private String description;
@@ -16,6 +19,25 @@ public class FoodItem {
         this.fee = fee;
         this.sold = sold;
         this.numberInCart = numberInCart;
+    }
+
+
+    public FoodItem(int id, String title, String pic, String description, Double fee, int sold, int numberInCart) {
+        this.id = id;
+        this.title = title;
+        this.pic = pic;
+        this.description = description;
+        this.fee = fee;
+        this.sold = sold;
+        this.numberInCart = numberInCart;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getTitle() {

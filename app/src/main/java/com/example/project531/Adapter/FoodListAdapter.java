@@ -1,6 +1,5 @@
 package com.example.project531.Adapter;
 
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,20 +9,24 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
-import com.example.project531.Activity.ShowDetailActivity;
-import com.example.project531.Domain.FoodDomain;
 import com.example.project531.Domain.FoodItem;
+import com.example.project531.Interface.IEventAddCart;
+import com.example.project531.Interface.IEventMinusCart;
 import com.example.project531.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
 public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.ViewHolder>{
 
     ArrayList<FoodItem> itemArrayList;
+    IEventAddCart iEventAddCart;
+    IEventMinusCart iEventMinusCart;
 
-    public FoodListAdapter(ArrayList<FoodItem> itemArrayList) {
+    public FoodListAdapter(ArrayList<FoodItem> itemArrayList, IEventAddCart iEventAddCart,IEventMinusCart iEventMinusCart) {
         this.itemArrayList = itemArrayList;
+        this.iEventAddCart = iEventAddCart;
+        this.iEventMinusCart = iEventMinusCart;
     }
 
     @NonNull
@@ -39,6 +42,7 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.ViewHo
         holder.price_food.setText(String.valueOf(itemArrayList.get(position).getFee()) + "đ");
         holder.number_sold.setText( "Đã bán: " +String.valueOf(itemArrayList.get(position).getSold()) +"+");
 
+
         if(itemArrayList.get(position).getNumberInCart() > 0){
             holder.minusCardBtn.setVisibility(View.VISIBLE);
             holder.numberItemTxt.setVisibility(View.VISIBLE);
@@ -48,18 +52,10 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.ViewHo
             holder.numberItemTxt.setVisibility(View.GONE);
         }
 
-        int drawableReourceId = holder.itemView.getContext().getResources()
-                .getIdentifier(itemArrayList.get(position).getPic(), "drawable",
-                        holder.itemView.getContext().getPackageName());
-
-        Glide.with(holder.itemView.getContext())
-                .load(drawableReourceId)
-                .into(holder.image_food);
-
-
         holder.plusCardBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                iEventAddCart.Done(itemArrayList.get(position));
                 itemArrayList.get(position).setNumberInCart(itemArrayList.get(position).getNumberInCart() + 1);
                 holder.minusCardBtn.setVisibility(View.VISIBLE);
                 holder.numberItemTxt.setVisibility(View.VISIBLE);
@@ -70,6 +66,7 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.ViewHo
         holder.minusCardBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                iEventMinusCart.Done(itemArrayList.get(position));
                 itemArrayList.get(position).setNumberInCart(itemArrayList.get(position).getNumberInCart() - 1);
                 holder.numberItemTxt.setText(String.valueOf(itemArrayList.get(position).getNumberInCart()));
                 if(itemArrayList.get(position).getNumberInCart() < 1){
@@ -79,6 +76,24 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.ViewHo
 
             }
         });
+
+//        int drawableReourceId = holder.itemView.getContext().getResources()
+//                .getIdentifier(itemArrayList.get(position).getPic(), "drawable",
+//                        holder.itemView.getContext().getPackageName());
+//
+//        Glide.with(holder.itemView.getContext())
+//                .load(drawableReourceId)
+//                .into(holder.image_food);
+
+
+        Picasso.get()
+                .load(itemArrayList.get(position).getPic())
+                .fit()
+                .centerCrop()
+                .into(holder.image_food);
+
+
+
 
     }
 

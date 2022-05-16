@@ -3,16 +3,19 @@ package com.example.project531.Domain;
 import java.io.Serializable;
 
 public class FoodDomain implements Serializable {
+    private int ID;
     private String title;
     private String pic;
     private String description;
     private Double fee;
-    private int star;
+    private double star;
     private int time;
     private int calories;
     private int numberInCart;
+    private String position;
+    private String timeopen;
 
-    public FoodDomain(String title, String pic, String description, Double fee, int star, int time, int calories) {
+    public FoodDomain(String title, String pic, String description, Double fee, double star, int time, int calories,String position) {
         this.title = title;
         this.pic = pic;
         this.description = description;
@@ -20,6 +23,59 @@ public class FoodDomain implements Serializable {
         this.star = star;
         this.time = time;
         this.calories = calories;
+        this.position = position;
+    }
+
+    public FoodDomain(String title, String pic, String description, Double fee, double star, int time, int calories, String position, String timeopen) {
+        this.title = title;
+        this.pic = pic;
+        this.description = description;
+        this.fee = fee;
+        this.star = star;
+        this.time = time;
+        this.calories = calories;
+        this.position = position;
+        this.timeopen = timeopen;
+    }
+
+    public FoodDomain(String title, String pic, String description, Double fee, double star, int time, int calories) {
+        this.title = title;
+        this.pic = pic;
+        this.description = description;
+        this.fee = fee;
+        this.star = star;
+        this.time = time;
+        this.calories = calories;
+    }
+
+    public FoodDomain(int ID, String title, String pic, String description, Double fee, double star, int time, int calories, int numberInCart, String position, String timeopen) {
+        this.ID = ID;
+        this.title = title;
+        this.pic = pic;
+        this.description = description;
+        this.fee = fee;
+        this.star = star;
+        this.time = time;
+        this.calories = calories;
+        this.numberInCart = numberInCart;
+        this.position = position;
+        this.timeopen = timeopen;
+    }
+
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
+    }
+
+    public String getTimeopen() {
+        return timeopen;
+    }
+
+    public void setTimeopen(String timeopen) {
+        this.timeopen = timeopen;
     }
 
     public int getNumberInCart() {
@@ -62,7 +118,7 @@ public class FoodDomain implements Serializable {
         this.fee = fee;
     }
 
-    public int getStar() {
+    public double getStar() {
         return star;
     }
 
@@ -84,5 +140,17 @@ public class FoodDomain implements Serializable {
 
     public void setCalories(int calories) {
         this.calories = calories;
+    }
+
+    public void setStar(double star) {
+        this.star = star;
+    }
+
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
     }
 }

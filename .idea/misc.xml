@@ -17,6 +17,7 @@
         <entry key="app/src/main/res/drawable/red_bar.xml" value="0.1305" />
         <entry key="app/src/main/res/drawable/yellow_bar.xml" value="0.1305" />
         <entry key="app/src/main/res/layout/activity_cart.xml" value="0.15912162162162163" />
+        <entry key="app/src/main/res/layout/activity_cate_list.xml" value="0.11790540540540541" />
         <entry key="app/src/main/res/layout/activity_edit_account.xml" value="0.125" />
         <entry key="app/src/main/res/layout/activity_forgot_password.xml" value="0.15912162162162163" />
         <entry key="app/src/main/res/layout/activity_history_orders.xml" value="0.1304054054054054" />
@@ -38,7 +39,7 @@
         <entry key="app/src/main/res/layout/item_food_ordered.xml" value="0.165" />
         <entry key="app/src/main/res/layout/item_order.xml" value="0.165" />
         <entry key="app/src/main/res/layout/layout_bottom_cart.xml" value="0.125" />
-        <entry key="app/src/main/res/layout/layout_label_cart.xml" value="0.125" />
+        <entry key="app/src/main/res/layout/layout_label_cart.xml" value="0.165" />
         <entry key="app/src/main/res/layout/layout_verify_order.xml" value="0.10033783783783784" />
         <entry key="app/src/main/res/layout/list_food_fragment.xml" value="0.15912162162162163" />
         <entry key="app/src/main/res/layout/mainpagefrag.xml" value="0.1" />

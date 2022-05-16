@@ -10,13 +10,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
-import com.example.project531.Activity.ShowDetailActivity;
+import com.example.project531.SanPham.ShowDetailActivity;
 import com.example.project531.Domain.FoodDomain;
 import com.example.project531.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -44,24 +43,24 @@ public class RecommendedAdapter extends RecyclerView.Adapter<RecommendedAdapter.
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.title.setText(RecommendedDomains.get(position).getTitle());
-        holder.fee.setText(String.valueOf(RecommendedDomains.get(position).getFee()));
+        holder.fee.setText(String.valueOf(RecommendedDomains.get(position).getStar()));
 
 
         int drawableReourceId = holder.itemView.getContext().getResources()
                 .getIdentifier(RecommendedDomains.get(position).getPic(), "drawable",
                         holder.itemView.getContext().getPackageName());
 
-        Glide.with(holder.itemView.getContext())
-                .load(drawableReourceId)
-                .into(holder.pic);
+            Picasso.get()
+                    .load(RecommendedDomains.get(position).getPic())
+                    .fit()
+                    .centerCrop()
+                    .into(holder.pic);
 
-        holder.item.setOnClickListener(v -> {
-            Intent intent = new Intent(holder.itemView.getContext(), ShowDetailActivity.class);
-            intent.putExtra("object", RecommendedDomains.get(position));
-            holder.itemView.getContext().startActivity(intent);
-        });
-
-
+            holder.item.setOnClickListener(v -> {
+                Intent intent = new Intent(holder.itemView.getContext(), ShowDetailActivity.class);
+                intent.putExtra("object", RecommendedDomains.get(position));
+                holder.itemView.getContext().startActivity(intent);
+            });
 
     }
 

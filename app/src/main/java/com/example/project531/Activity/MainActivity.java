@@ -1,39 +1,26 @@
 package com.example.project531.Activity;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import androidx.fragment.app.FragmentManager;
+
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.view.MenuItem;
+import android.os.StrictMode;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.project531.Adapter.CategoryAdapter;
-import com.example.project531.Adapter.RecommendedAdapter;
-import com.example.project531.Domain.CategoryDomain;
-import com.example.project531.Domain.FoodDomain;
-import com.example.project531.ForgotPasswordActivity;
-import com.example.project531.HistoryOrdersActivity;
-import com.example.project531.HomeFragment;
-import com.example.project531.LoginActivity;
-import com.example.project531.OrdersFragment;
+import com.example.project531.DonHang.HistoryOrdersActivity;
+import com.example.project531.Home.HomeFragment;
+import com.example.project531.Home.OrdersFragment;
 import com.example.project531.ProfileActivity;
 import com.example.project531.R;
-import com.example.project531.SignupActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.internal.NavigationMenu;
-import com.google.android.material.navigation.NavigationView;
-
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     private RecyclerView.Adapter adapter, adapter2;
@@ -41,19 +28,26 @@ public class MainActivity extends AppCompatActivity {
 
     FloatingActionButton cartBtn;
     ImageView avatar_btn;
-
     LinearLayout btn_home, btn_orders;
 
-
     ImageView icon_book_mark, icon_home;
-
     TextView txt_icon_book_mark, txt_icon_home;
+
+    public static String connectURL = "http://192.168.1.105:4000";
+    public static int ID_USER = 1;
+    public static String CURRENT_LOCATION = "";
+    public static double X_LA;
+    public static double Y_LO;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
 
 
         btn_home = findViewById(R.id.homeBtn);
@@ -116,6 +110,12 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
+
+
+
+
+
 //        avatar_btn.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
@@ -131,6 +131,8 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
+
     public void switchFragment(Fragment fragment){
 
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -139,6 +141,16 @@ public class MainActivity extends AppCompatActivity {
                 .addToBackStack(null)
                 .commit();
     }
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -1,4 +1,4 @@
-package com.example.project531.Activity;
+package com.example.project531;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -8,14 +8,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
+import com.example.project531.API.ParseURL;
+import com.example.project531.Activity.MainActivity;
 import com.example.project531.Adapter.RecommendedAdapter;
 import com.example.project531.Domain.FoodDomain;
 import com.example.project531.Interface.ImplementJson;
-import com.example.project531.API.ParseURL;
-import com.example.project531.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -23,7 +25,8 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class ListFoodActivity extends AppCompatActivity {
+public class SearchActivity extends AppCompatActivity {
+
 
     private RecyclerView  recyclerViewPopularList;
     private RecyclerView.Adapter  adapter2;
@@ -31,11 +34,16 @@ public class ListFoodActivity extends AppCompatActivity {
     private RequestQueue mQueue;
     ParseURL parseURL;
 
+    String setxt;
+
+    TextView textView13;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list_food);
+        setContentView(R.layout.activity_search);
+
 
         mQueue = Volley.newRequestQueue(this);
         parseURL = new ParseURL(mQueue);
@@ -51,23 +59,27 @@ public class ListFoodActivity extends AppCompatActivity {
             }
         });
 
+
+        setxt = (String) getIntent().getSerializableExtra("stringsearch");
+
+        textView13 = findViewById(R.id.textView13);
+        textView13.setText("Tìm kiếm: "+ setxt);
+        //Toast.makeText(this, (String) getIntent().getSerializableExtra("stringsearch"), Toast.LENGTH_LONG).show();
+
         recyclerViewPopular();
+
+
     }
 
 
 
-//    private void recyclerViewPopular() {
-//        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 2);
-//        recyclerViewPopularList.setLayoutManager(mLayoutManager);
-//
-//        ArrayList<FoodDomain> foodlist = new ArrayList<>();
-//        foodlist.add(new FoodDomain("Pepperoni pizza", "pizza1", "slices pepperoni ,mozzarella cheese, fresh oregano,  ground black pepper, pizza sauce", 13.0, 5, 20, 1000));
-//        foodlist.add(new FoodDomain("Chesse Burger", "burger", "beef, Gouda Cheese, Special sauce, Lettuce, tomato ", 15.20, 4, 18, 1500));
-//        foodlist.add(new FoodDomain("Vagetable pizza", "pizza3", " olive oil, Vegetable oil, pitted Kalamata, cherry tomatoes, fresh oregano, basil", 11.0, 3, 16, 800));
-//
-//        adapter2 = new RecommendedAdapter(foodlist,2);
-//        recyclerViewPopularList.setAdapter(adapter2);
-//    }
+
+
+
+
+
+
+
 
     private void recyclerViewPopular() {
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 2);
@@ -75,7 +87,7 @@ public class ListFoodActivity extends AppCompatActivity {
 
         ArrayList<FoodDomain> foodlist = new ArrayList<>();
 
-        parseURL.ParseData(MainActivity.connectURL+"/cuahang/dexuatlist", new ImplementJson() {
+        parseURL.ParseData(MainActivity.connectURL+"/cuahang/timkiemlist?setxt="+setxt, new ImplementJson() {
             @Override
             public void Done(JSONArray jsonArray) {
                 try{
@@ -104,4 +116,5 @@ public class ListFoodActivity extends AppCompatActivity {
             }
         });
     }
+
 }

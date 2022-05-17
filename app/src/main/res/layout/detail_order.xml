@@ -17,7 +17,7 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:layout_width="215dp"
+                android:layout_width="225dp"
                 android:layout_height="wrap_content"
 
                 android:paddingLeft="16dp"
@@ -27,6 +27,15 @@
                 android:textColor="@color/colorBackground"
                 android:textSize="20dp"
                 android:textStyle="bold" />
+
+
+            <TextView
+                android:id="@+id/generatePDFbtn"
+                android:background="@drawable/ic_baseline_logout_24_white"
+                android:layout_width="45dp"
+                android:height="40dp"
+                android:layout_marginLeft="5dp"
+                android:layout_height="match_parent"/>
         </LinearLayout>
 
 

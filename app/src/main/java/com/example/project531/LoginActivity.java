@@ -125,7 +125,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-
         Intent i2 = new Intent(this, SignupActivity.class);
         button_signup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -133,9 +132,6 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(i2);
             }
         });
-
-
-
 
         button_signin = findViewById(R.id.button_signin);
         et_password = findViewById(R.id.et_password);
@@ -205,20 +201,22 @@ public class LoginActivity extends AppCompatActivity {
                     GoogleSignInAccount googleSignInAccount = signInAccountTask.getResult(ApiException.class);
 
                     if(googleSignInAccount != null){
+
                         AuthCredential authCredential = GoogleAuthProvider.getCredential(googleSignInAccount.getIdToken(), null);
 
                         firebaseAuth.signInWithCredential(authCredential).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
+
+
                                 if(task.isSuccessful()){
+
                                     //REDIRECT
 
                                     firebaseAuth = FirebaseAuth.getInstance();
                                     FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
                                     if(firebaseUser != null){
                                         Log.e("anh dai dien:" , String.valueOf(firebaseUser.getPhotoUrl()));
-
-
 
                                         parseURL.ParseData(MainActivity.connectURL + "/googleauth?ten="+String.valueOf(firebaseUser.getDisplayName())+"&email="+String.valueOf(firebaseUser.getEmail())+"&anh="+String.valueOf(firebaseUser.getPhotoUrl()), new ImplementJson() {
                                             @Override
@@ -270,6 +268,7 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 } catch (ApiException e) {
                     e.printStackTrace();
+
                 }
 
             }

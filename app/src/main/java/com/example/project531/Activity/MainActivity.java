@@ -1,6 +1,12 @@
 package com.example.project531.Activity;
 
+import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
+import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
@@ -8,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.fragment.app.FragmentManager;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -17,6 +24,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.project531.Database;
 import com.example.project531.DonHang.HistoryOrdersActivity;
@@ -43,9 +51,12 @@ public class MainActivity extends AppCompatActivity {
     ImageView icon_book_mark, icon_home;
     TextView txt_icon_book_mark, txt_icon_home;
 
+    private static final int PERMISSION_REQUEST_CODE = 200;
+
     public static Database database;
 
-    public static String connectURL = "http://192.168.1.105:4000";
+    public static String connectURL = "http://192.168.43.197:4000";
+    public static String DIACHI = "";
     public static int ID_USER = 0;
     public static String ANH = "";
     public static String TEN = "";
@@ -54,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
     public static String CURRENT_LOCATION = "";
     public static double X_LA;
     public static double Y_LO;
+
 
 
     List<Fragment> fragmentList = new ArrayList<>();
@@ -163,6 +175,12 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+        if (checkPermission()) {
+            Toast.makeText(this, "Permission Granted", Toast.LENGTH_SHORT).show();
+        } else {
+            requestPermission();
+        }
+
 
 
 //        avatar_btn.setOnClickListener(new View.OnClickListener() {
@@ -218,22 +236,47 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
-
-
-
     public void STARTDATABASE(){
             database = new Database(this,"FOODAPP.sqlite", null, 1);
 
             database.QueryData("CREATE TABLE IF NOT EXISTS Userx(" +
                     "ID  INT, " +
                     "TEN VARCHAR(200), " +
-                    "ANH VARCHAR(400), " +
+                    "ANH VARCHAR(700), " +
                     "SDT VARCHAR(100), " +
                     "MATKHAU VARCHAR(100), " +
                     "EMAIL VARCHAR(100) )");
     }
 
+
+
+    private boolean checkPermission() {
+        // checking of permissions.
+        int permission1 = ContextCompat.checkSelfPermission(getApplicationContext(), WRITE_EXTERNAL_STORAGE);
+        int permission2 = ContextCompat.checkSelfPermission(getApplicationContext(), READ_EXTERNAL_STORAGE);
+        return permission1 == PackageManager.PERMISSION_GRANTED && permission2 == PackageManager.PERMISSION_GRANTED;
+    }
+
+    private void requestPermission() {
+        // requesting permissions if not provided.
+        ActivityCompat.requestPermissions(this, new String[]{WRITE_EXTERNAL_STORAGE, READ_EXTERNAL_STORAGE}, PERMISSION_REQUEST_CODE);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (requestCode == PERMISSION_REQUEST_CODE) {
+            if (grantResults.length > 0) {
+                boolean writeStorage = grantResults[0] == PackageManager.PERMISSION_GRANTED;
+                boolean readStorage = grantResults[1] == PackageManager.PERMISSION_GRANTED;
+                if (writeStorage && readStorage) {
+                    Toast.makeText(this, "Permission Granted..", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(this, "Permission Denined.", Toast.LENGTH_SHORT).show();
+                    finish();
+                }
+            }
+        }
+    }
 
 
 

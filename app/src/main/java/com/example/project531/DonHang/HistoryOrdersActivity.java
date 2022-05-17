@@ -27,7 +27,6 @@ import java.util.ArrayList;
 
 public class HistoryOrdersActivity extends AppCompatActivity {
 
-
     private RecyclerView rcv_order_list;
     private RecyclerView.Adapter adapter;
 

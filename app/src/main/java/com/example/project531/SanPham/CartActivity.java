@@ -19,9 +19,11 @@ import com.android.volley.toolbox.Volley;
 import com.example.project531.Activity.MainActivity;
 import com.example.project531.Adapter.FoodListAdapterOrdered;
 import com.example.project531.Domain.FoodItem;
+import com.example.project531.EditAccountActivity;
 import com.example.project531.Helper.ManagementCart;
 import com.example.project531.Interface.ImplementJson;
 import com.example.project531.API.ParseURL;
+import com.example.project531.ProfileActivity;
 import com.example.project531.R;
 
 import org.json.JSONArray;
@@ -41,6 +43,8 @@ public class CartActivity extends AppCompatActivity {
     double pricetotal;
 
     private RecyclerView rcv_list_order;
+
+    TextView diachi_cart, sdt_cart, thoigiangiaohang_cart;
 
 
     private RequestQueue mQueue;
@@ -73,8 +77,15 @@ public class CartActivity extends AppCompatActivity {
             }
         });
 
+        thoigiangiaohang_cart = findViewById(R.id.thoigiangiaohang_cart);
+        diachi_cart = findViewById(R.id.diachi_cart);
+        sdt_cart = findViewById(R.id.sdt_cart);
 
-        rcv_list_order = findViewById(R.id.rcv_list_order);
+        diachi_cart.setText("Địa chỉ giao hàng: "+MainActivity.DIACHI);
+        sdt_cart.setText("SDT: "+MainActivity.SDT);
+        thoigiangiaohang_cart.setText("Thời gian giao hàng: 2p");
+
+      p rcv_list_order = findViewById(R.id.rcv_list_order);
         recyclerViewListFood();
 
         payment_btn = findViewById(R.id.payment_btn);
@@ -93,6 +104,8 @@ public class CartActivity extends AppCompatActivity {
                 parseURL.ParseData(MainActivity.connectURL+"/donhang/insert?gia="+pricetotal+"&sp="+sp, new ImplementJson() {
                     @Override
                     public void Done(JSONArray jsonArray) {
+
+
 //                        try{
 //
 //                        } catch (JSONException e) {
@@ -100,6 +113,9 @@ public class CartActivity extends AppCompatActivity {
 //                        }
                     }
                 });
+
+                Intent ok = new Intent(CartActivity.this, MainActivity.class);
+                startActivity(ok);
 
 
 

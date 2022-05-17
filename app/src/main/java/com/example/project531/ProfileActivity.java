@@ -9,6 +9,7 @@ import androidx.core.app.ActivityCompat;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -96,9 +97,23 @@ public class ProfileActivity extends AppCompatActivity implements OnMapReadyCall
         email.setText(MainActivity.EMAIL);
         sdt.setText(MainActivity.SDT);
 
-        Picasso.get()
-                .load(MainActivity.ANH)
-                .into(circleImageView);
+
+        try {
+            Picasso.get()
+                    .load(MainActivity.ANH)
+                    .into(circleImageView);
+        }catch (Exception e){
+
+            Cursor cursor = MainActivity.database.GetData("SELECT * FROM Userx");
+            while (cursor.moveToNext()){
+                MainActivity.ANH = cursor.getString(2);
+            }
+
+            Picasso.get()
+                    .load(MainActivity.ANH)
+                    .into(circleImageView);
+        }
+
 
         SupportMapFragment supportMapFragment1 = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map_user_local);
         supportMapFragment1.getMapAsync((OnMapReadyCallback) this);
@@ -179,7 +194,6 @@ public class ProfileActivity extends AppCompatActivity implements OnMapReadyCall
 
 
                 googleSignInClient = GoogleSignIn.getClient(ProfileActivity.this, GoogleSignInOptions.DEFAULT_SIGN_IN);
-
                 googleSignInClient.signOut().addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
@@ -188,9 +202,7 @@ public class ProfileActivity extends AppCompatActivity implements OnMapReadyCall
                                 firebaseAuth.signOut();
                                 finish();
                             }catch (Exception e){
-
                             }
-
                         }
                     }
                 });
@@ -235,6 +247,8 @@ public class ProfileActivity extends AppCompatActivity implements OnMapReadyCall
                                 }
                                 else {
                                     txt_address.setText(addresses.get(0).getAdminArea() + ", " + addresses.get(0).getCountryName());
+
+                                    MainActivity.DIACHI = addresses.get(0).getAdminArea() + ", " + addresses.get(0).getCountryName();
                                     Log.e("xxxx",addresses.get(0).getFeatureName() + ", " + addresses.get(0).getLocality() +", " + addresses.get(0).getAdminArea() + ", " + addresses.get(0).getCountryName());
 
                                 }

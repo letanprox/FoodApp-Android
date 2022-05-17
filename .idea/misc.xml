@@ -21,7 +21,7 @@
         <entry key="app/src/main/res/drawable/yellow_bar.xml" value="0.1305" />
         <entry key="app/src/main/res/layout/activity_cart.xml" value="0.15912162162162163" />
         <entry key="app/src/main/res/layout/activity_cate_list.xml" value="0.11790540540540541" />
-        <entry key="app/src/main/res/layout/activity_edit_account.xml" value="0.125" />
+        <entry key="app/src/main/res/layout/activity_edit_account.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_forgot_password.xml" value="0.15912162162162163" />
         <entry key="app/src/main/res/layout/activity_history_orders.xml" value="0.1304054054054054" />
         <entry key="app/src/main/res/layout/activity_intro.xml" value="0.1489864864864865" />
@@ -30,6 +30,7 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_profile.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_sample_google_auth.xml" value="0.16216216216216217" />
+        <entry key="app/src/main/res/layout/activity_search.xml" value="0.11" />
         <entry key="app/src/main/res/layout/activity_show_detail.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_signup.xml" value="0.15912162162162163" />
         <entry key="app/src/main/res/layout/activitysss.xml" value="0.1891891891891892" />

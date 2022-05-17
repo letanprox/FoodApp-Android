@@ -57,13 +57,10 @@ public class SignupActivity extends AppCompatActivity {
     private DatabaseReference mDatabaseRef;
     private StorageTask mUploadTask;
 
-
     private RequestQueue mQueue;
     ParseURL parseURL;
 
     ProgressDialog progressDialog;
-
-
     private static final int PICK_IMAGE_REQUEST = 1;
 
     @Override
@@ -80,11 +77,8 @@ public class SignupActivity extends AppCompatActivity {
             }
         });
 
-
-
         mStorageRef = FirebaseStorage.getInstance().getReference("uploads");
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("uploads");
-
 
         mQueue = Volley.newRequestQueue(this);
         parseURL = new ParseURL(mQueue);
@@ -111,19 +105,14 @@ public class SignupActivity extends AppCompatActivity {
                 uploadFile(new ISignup() {
                     @Override
                     public void Done(String url) {
-
                         Log.e("anh: ", url );
                         String Txturl =  URLEncoder.encode(url);
-
 //                            Log.e("ID", MainActivity.connectURL + "/users/insert?ten="+et_username.getText().toString()+"&anh="+url+"&email="+et_email.getText().toString()+"&matkhau="+et_password.getText().toString()+"&sdt="+et_phone.getText().toString());
                             parseURL.ParseData(MainActivity.connectURL + "/users/insert?ten="+et_username.getText().toString()+"&anh="+Txturl+"&email="+et_email.getText().toString()+"&matkhau="+et_password.getText().toString()+"&sdt="+et_phone.getText().toString(), new ImplementJson() {
                                 @Override
                                 public void Done(JSONArray jsonArray) {
-
                                     try{
-
                                         progressDialog.dismiss();
-
                                         for (int i = 0; i < jsonArray.length(); i++) {
                                             JSONObject data = null;
                                             data = jsonArray.getJSONObject(i);
@@ -139,17 +128,12 @@ public class SignupActivity extends AppCompatActivity {
                                                     et_password.getText().toString(),
                                                     et_email.getText().toString()
                                             );
-
                                             Intent ok = new Intent(SignupActivity.this, MainActivity.class);
                                             startActivity(ok);
                                         }
-
                                         if(jsonArray.length() == 0){
                                             Toast.makeText(getApplicationContext(), "Fail to Create Acount!!", Toast.LENGTH_LONG).show();
                                         }
-
-
-
                                     } catch (JSONException e) {
                                         e.printStackTrace();
                                     }
@@ -159,7 +143,6 @@ public class SignupActivity extends AppCompatActivity {
                 });
             }
         });
-
     }
 
 
@@ -176,19 +159,10 @@ public class SignupActivity extends AppCompatActivity {
 
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK
                 && data != null && data.getData() != null) {
-
                 mImageUri = data.getData();
                 Picasso.get().load(mImageUri).into(circleImageView);
-
         }
     }
-
-
-
-
-
-
-
 
 
     private String getFileExtension(Uri uri) {
@@ -199,8 +173,6 @@ public class SignupActivity extends AppCompatActivity {
 
 
     private void uploadFile(ISignup iSignup) {
-
-
         progressDialog = new ProgressDialog(SignupActivity.this);
         progressDialog.show();
         progressDialog.setContentView(R.layout.progress_dialog);
@@ -241,23 +213,5 @@ public class SignupActivity extends AppCompatActivity {
             Toast.makeText(this, "No file selected", Toast.LENGTH_SHORT).show();
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }

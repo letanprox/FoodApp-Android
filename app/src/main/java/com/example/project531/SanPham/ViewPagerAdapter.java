@@ -68,7 +68,6 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
                 title = "Thông tin";
                 break;
         }
-
         return title;
     }
 }

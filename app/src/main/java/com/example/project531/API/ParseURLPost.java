@@ -13,14 +13,18 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class ParseURL {
+import java.util.HashMap;
+import java.util.Map;
+
+public class ParseURLPost {
     private RequestQueue mQueue;
-    public ParseURL(RequestQueue mQueue) {
+    public ParseURLPost(RequestQueue mQueue) {
         this.mQueue = mQueue;
     }
-    public void ParseData(String url, ImplementJson implementJson) {
+    public void ParseData(String url, ImplementJson implementJson, Map<String,String> params) {
         //String url = "http://localhost:4000/cuahang/dexuatlist";
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
+        JSONObject parameters = new JSONObject(params);
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url,parameters,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {

@@ -21,11 +21,9 @@ import java.util.ArrayList;
 
 
 public class ListFoodFragment extends Fragment {
-
     private RecyclerView rcv_food_list;
     private RecyclerView.Adapter adapter;
     private RecyclerView.Adapter adapterZero;
-
     ArrayList<FoodItem> foodlist;
 
     public ListFoodFragment(ArrayList<FoodItem> foodlist, RecyclerView.Adapter adapterZero) {
@@ -41,7 +39,6 @@ public class ListFoodFragment extends Fragment {
         recyclerViewListFood();
         return  view;
     }
-
 
     private void recyclerViewListFood() {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);

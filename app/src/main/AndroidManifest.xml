@@ -16,6 +16,15 @@
         android:theme="@style/Theme.Project531"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ChartActivity"
+            android:exported="false" />
+        <activity
+            android:name=".OTPLogActivity"
+            android:exported="false" />
+        <activity
+            android:name=".OTPSampleActivity"
+            android:exported="false" />
+        <activity
             android:name=".SearchActivity"
             android:exported="false" />
         <activity

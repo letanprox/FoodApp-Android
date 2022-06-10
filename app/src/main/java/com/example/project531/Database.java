@@ -24,6 +24,7 @@ public class Database extends SQLiteOpenHelper {
         return database.rawQuery(sql, null);
     }
 
+
     public long INSERT_USER(int id,String ten, String anh,String sdt, String matkhau, String email){
         SQLiteDatabase database = getWritableDatabase();
         String sql = "INSERT INTO Userx VALUES("+id+", ?, ?, ?, ?, ?)";
@@ -38,7 +39,6 @@ public class Database extends SQLiteOpenHelper {
 
         return  sqLiteStatement.executeInsert();
     }
-
 
 
     public long UPDATE_USER(String ten, String anh,String sdt, String email){
@@ -59,26 +59,6 @@ public class Database extends SQLiteOpenHelper {
 
         return  sqLiteStatement.executeInsert();
     }
-//
-//
-//    public int UPDATE_SANPHAM(int ma,String ten, String donvi,int soluong, String giatien, byte[] hinhanh){
-//        SQLiteDatabase database = getWritableDatabase();
-//        String sql = "UPDATE SanPham SET " +
-//                "TenSanPham = ? ," +
-//                "DonVi = ?," +
-//                "Soluong = 0 ," +
-//                "GiaTien = ? ," +
-//                "HinhAnh = ? " +
-//                "WHERE MaSanPham = " + ma ;
-//        SQLiteStatement sqLiteStatement = database.compileStatement(sql);
-//        sqLiteStatement.clearBindings();
-//
-//        sqLiteStatement.bindString(1, ten);
-//        sqLiteStatement.bindString(2, donvi);
-//        sqLiteStatement.bindString(3, giatien);
-//        sqLiteStatement.bindBlob(4, hinhanh);
-//        return  sqLiteStatement.executeUpdateDelete();
-//    }
 
 
     @Override

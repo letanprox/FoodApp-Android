@@ -26,11 +26,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.project531.ChartActivity;
 import com.example.project531.Database;
 import com.example.project531.DonHang.HistoryOrdersActivity;
 import com.example.project531.Home.HomeFragment;
 import com.example.project531.Home.OrdersFragment;
 import com.example.project531.LoginActivity;
+import com.example.project531.OTPSampleActivity;
 import com.example.project531.ProfileActivity;
 import com.example.project531.R;
 import com.example.project531.SignupActivity;
@@ -55,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static Database database;
 
-    public static String connectURL = "http://192.168.43.197:4000";
+    public static String connectURL = "http://192.168.1.104:4000";
     public static String DIACHI = "";
     public static int ID_USER = 0;
     public static String ANH = "";
@@ -65,15 +67,15 @@ public class MainActivity extends AppCompatActivity {
     public static String CURRENT_LOCATION = "";
     public static double X_LA;
     public static double Y_LO;
-
-
-
     List<Fragment> fragmentList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+//        Intent ixx = new Intent(this, ChartActivity.class);
+//        startActivity(ixx);
 
         STARTDATABASE();
 
@@ -86,17 +88,13 @@ public class MainActivity extends AppCompatActivity {
             EMAIL = cursor.getString(5);
         }
 
-        Log.e("jjj", ANH);
-
         if(ID_USER == 0){
             Intent ix = new Intent(this, LoginActivity.class);
             startActivity(ix);
         }
 
-
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
-
 
         btn_home = findViewById(R.id.homeBtn);
         btn_orders = findViewById(R.id.orders_btn);
@@ -104,26 +102,19 @@ public class MainActivity extends AppCompatActivity {
         icon_book_mark = findViewById(R.id.icon_book_mark);
         icon_home = findViewById(R.id.icon_home);
 
-
         txt_icon_book_mark = findViewById(R.id.txt_icon_book_mark);
         txt_icon_home = findViewById(R.id.txt_icon_home);
-
 
         icon_book_mark.setImageResource(R.drawable.ic_baseline_bookmark_27_black);
         icon_home.setImageResource(R.drawable.ic_baseline_home_27_red);
         txt_icon_book_mark.setTextColor(Color.parseColor("#777777"));
         txt_icon_home.setTextColor(Color.parseColor("#ff3232"));
 
-
-
-
         HomeFragment homeFragment = new HomeFragment();
         OrdersFragment ordersFragment = new OrdersFragment();
 
         fragmentList.add(homeFragment);
         fragmentList.add(ordersFragment);
-
-
 
         btn_home.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -146,56 +137,24 @@ public class MainActivity extends AppCompatActivity {
                 displayFragment(ordersFragment);
             }
         });
-
         displayFragment(homeFragment);
-
-
-       //getSupportFragmentManager().beginTransaction().add(R.id.home_fragment, new HomeFragment()).commit();
-
         //Intent i = new Intent(this, ForgotPasswordActivity.class); startActivity(i);
         cartBtn = (FloatingActionButton) findViewById(R.id.cartBtn);
         avatar_btn = findViewById(R.id.avatar_btn);
-
         Intent i = new Intent(this, HistoryOrdersActivity.class);
         Intent i1 = new Intent(this, ProfileActivity.class);
-
         cartBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(i);
             }
         });
-
-
-
-
-
-
-
-
-
-
         if (checkPermission()) {
             Toast.makeText(this, "Permission Granted", Toast.LENGTH_SHORT).show();
         } else {
             requestPermission();
         }
-
-
-
-//        avatar_btn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                startActivity(i1);
-//            }
-//        });
-
-//        recyclerViewCategoty();
-//        recyclerViewPopular();
-//        bottomNavigation();
     }
-
-
 
     private int getFragmentIndex(Fragment fragment) {
         int index = -1;
@@ -226,7 +185,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void switchFragment(Fragment fragment){
-
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
                 .replace(R.id.home_fragment, fragment)
@@ -234,11 +192,8 @@ public class MainActivity extends AppCompatActivity {
                 .commit();
     }
 
-
-
     public void STARTDATABASE(){
             database = new Database(this,"FOODAPP.sqlite", null, 1);
-
             database.QueryData("CREATE TABLE IF NOT EXISTS Userx(" +
                     "ID  INT, " +
                     "TEN VARCHAR(200), " +
@@ -247,8 +202,6 @@ public class MainActivity extends AppCompatActivity {
                     "MATKHAU VARCHAR(100), " +
                     "EMAIL VARCHAR(100) )");
     }
-
-
 
     private boolean checkPermission() {
         // checking of permissions.
@@ -277,9 +230,5 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
-
-
-
-
 
 }

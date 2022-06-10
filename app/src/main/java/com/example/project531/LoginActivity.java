@@ -68,17 +68,12 @@ public class LoginActivity extends AppCompatActivity {
         google_btn = findViewById(R.id.google_btn);
 
         /////////////////////////////////////////////////////////////////
-
-
         GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(
                 GoogleSignInOptions.DEFAULT_SIGN_IN
         ).requestIdToken("901183913660-4gcebqh0im7ehkmu4pmf752cs5lvosh7.apps.googleusercontent.com")
                 .requestEmail().build();
 
         googleSignInClient = GoogleSignIn.getClient(LoginActivity.this, googleSignInOptions);
-
-
-
 
         google_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,35 +84,15 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-
-
-
-
         firebaseAuth = FirebaseAuth.getInstance();
         FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
         if(firebaseUser != null){
 //            startActivity(new Intent(LoginActivity.this, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         //////////////////////////////////////////////
 
-        Intent i1 = new Intent(this, ForgotPasswordActivity.class);
+        Intent i1 = new Intent(this, OTPSampleActivity.class);
         button_forgot_password.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -186,17 +161,13 @@ public class LoginActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-
-
         if(requestCode == 100){
             Task<GoogleSignInAccount> signInAccountTask = GoogleSignIn.getSignedInAccountFromIntent(data);
             displayToast(String.valueOf(signInAccountTask.isSuccessful()));
             Log.e("xxx",data.toString());
             if(signInAccountTask.isSuccessful()){
                 String s = "Google sign in successful";
-
                 displayToast(s);
-
                 try {
                     GoogleSignInAccount googleSignInAccount = signInAccountTask.getResult(ApiException.class);
 
@@ -253,18 +224,13 @@ public class LoginActivity extends AppCompatActivity {
                                                 }
                                             }
                                         });
-
-
-
                                     }
-
                                     //startActivity(new Intent(LoginActivity.this, SampleGoogleAuthActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
                                 }else {
                                     Log.e("ooo", task.getException().getMessage());
                                 }
                             }
                         });
-
                     }
                 } catch (ApiException e) {
                     e.printStackTrace();

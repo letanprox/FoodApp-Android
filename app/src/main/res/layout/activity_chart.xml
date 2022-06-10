@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        app:navigationIcon="@drawable/ic_back"
+        android:backgroundTint="@color/white"
+        app:theme="@style/TransparentToolbar" >
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:paddingStart="0dp"
+            android:text="Thống kê hóa đơn theo ngày"
+            android:textAlignment="viewStart"
+            android:textColor="#ff3d00"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+
+
+
+    <com.github.mikephil.charting.charts.LineChart
+        android:layout_marginTop="100dp"
+        android:id="@+id/line_chart_phieunhap"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"/>
+
+
+</RelativeLayout>

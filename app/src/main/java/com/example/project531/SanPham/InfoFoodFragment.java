@@ -36,12 +36,9 @@ public class InfoFoodFragment extends Fragment implements OnMapReadyCallback {
     RatingBar ratingBar;
     GoogleMap map;
     TextView position_label, priceavg_label, timeopen_label;
-
     double x;
     double y;
-
     ISetTimeOrder iSetTimeOrder;
-
     public InfoFoodFragment(FoodDomain foodDomain, ISetTimeOrder iSetTimeOrder) {
         this.foodDomain = foodDomain;
         this.iSetTimeOrder = iSetTimeOrder;
@@ -91,7 +88,6 @@ public class InfoFoodFragment extends Fragment implements OnMapReadyCallback {
             x = (address.getLatitude());
             y = (address.getLongitude());
 
-
             float[] results = new float[1];
             Location.distanceBetween(x, y,
                     MainActivity.X_LA, MainActivity.Y_LO,
@@ -104,10 +100,8 @@ public class InfoFoodFragment extends Fragment implements OnMapReadyCallback {
 
             Log.e("xxx",  String.valueOf(estimatedDriveTimeInMinutes));
             iSetTimeOrder.Done(String.valueOf(estimatedDriveTimeInMinutes));
-
         }
 
-        Log.e("", x + " " + y);
 
         x = Double.parseDouble(String.valueOf(x));
         y = Double.parseDouble(String.valueOf(y));
@@ -117,24 +111,4 @@ public class InfoFoodFragment extends Fragment implements OnMapReadyCallback {
         map.addMarker(new MarkerOptions().position(Hocvien).title("Bun Thai"));
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(Hocvien,11));
     }
-
-//    public class GeoHandler extends Handler{
-//        @Override
-//        public void handleMessage(@NonNull Message msg) {
-//            String address;
-//            switch (msg.what){
-//                case 1:
-//                    Bundle bundle = msg.getData();
-//                    address = bundle.getString("address");
-//                    break;
-//                default:address = null;
-//            }
-//
-//            String string = address;
-//            String[] parts = string.split("=");
-//            x = Double.parseDouble(parts[0]); // 004
-//            y = Double.parseDouble(parts[1]); // 004
-//        }
-//    }
-
 }

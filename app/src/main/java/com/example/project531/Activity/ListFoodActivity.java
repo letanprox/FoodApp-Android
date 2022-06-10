@@ -27,10 +27,8 @@ public class ListFoodActivity extends AppCompatActivity {
 
     private RecyclerView  recyclerViewPopularList;
     private RecyclerView.Adapter  adapter2;
-
     private RequestQueue mQueue;
     ParseURL parseURL;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,23 +54,9 @@ public class ListFoodActivity extends AppCompatActivity {
 
 
 
-//    private void recyclerViewPopular() {
-//        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 2);
-//        recyclerViewPopularList.setLayoutManager(mLayoutManager);
-//
-//        ArrayList<FoodDomain> foodlist = new ArrayList<>();
-//        foodlist.add(new FoodDomain("Pepperoni pizza", "pizza1", "slices pepperoni ,mozzarella cheese, fresh oregano,  ground black pepper, pizza sauce", 13.0, 5, 20, 1000));
-//        foodlist.add(new FoodDomain("Chesse Burger", "burger", "beef, Gouda Cheese, Special sauce, Lettuce, tomato ", 15.20, 4, 18, 1500));
-//        foodlist.add(new FoodDomain("Vagetable pizza", "pizza3", " olive oil, Vegetable oil, pitted Kalamata, cherry tomatoes, fresh oregano, basil", 11.0, 3, 16, 800));
-//
-//        adapter2 = new RecommendedAdapter(foodlist,2);
-//        recyclerViewPopularList.setAdapter(adapter2);
-//    }
-
     private void recyclerViewPopular() {
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 2);
         recyclerViewPopularList.setLayoutManager(mLayoutManager);
-
         ArrayList<FoodDomain> foodlist = new ArrayList<>();
 
         parseURL.ParseData(MainActivity.connectURL+"/cuahang/dexuatlist", new ImplementJson() {
@@ -93,9 +77,7 @@ public class ListFoodActivity extends AppCompatActivity {
                         int ID = data.getInt("ID");
 
                         foodlist.add(new FoodDomain(ID,TEN, ANH, MOTA, GIATB, DANHGIA, 0, 0,0,VITRI,THOIGIANMO));
-
                     }
-
                     adapter2 = new RecommendedAdapter(foodlist,2);
                     recyclerViewPopularList.setAdapter(adapter2);
                 } catch (JSONException e) {

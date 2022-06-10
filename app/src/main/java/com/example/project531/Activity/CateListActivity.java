@@ -29,9 +29,7 @@ public class CateListActivity extends AppCompatActivity {
 
     private RecyclerView  recyclerViewPopularList;
     private RecyclerView.Adapter  adapter2;
-
     TextView label_cate;
-
     private RequestQueue mQueue;
     ParseURL parseURL;
     CategoryDomain object;
@@ -59,7 +57,6 @@ public class CateListActivity extends AppCompatActivity {
         label_cate = findViewById(R.id.label_cate);
 
         label_cate.setText(String.valueOf(object.getTitle()).toString());
-
         recyclerViewPopular();
     }
 
@@ -67,7 +64,6 @@ public class CateListActivity extends AppCompatActivity {
     private void recyclerViewPopular() {
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 2);
         recyclerViewPopularList.setLayoutManager(mLayoutManager);
-
         ArrayList<FoodDomain> foodlist = new ArrayList<>();
 
         parseURL.ParseData(MainActivity.connectURL+"/cuahang/cate?idsp="+object.getId(), new ImplementJson() {
@@ -86,11 +82,8 @@ public class CateListActivity extends AppCompatActivity {
                         Double GIATB = data.getDouble("GIATB");
                         String THOIGIANMO = data.getString("THOIGIANMO");
                         int ID = data.getInt("ID");
-
                         foodlist.add(new FoodDomain(ID,TEN, ANH, MOTA, GIATB, DANHGIA, 0, 0,0,VITRI,THOIGIANMO));
-
                     }
-
                     adapter2 = new RecommendedAdapter(foodlist,2);
                     recyclerViewPopularList.setAdapter(adapter2);
                 } catch (JSONException e) {
@@ -99,5 +92,4 @@ public class CateListActivity extends AppCompatActivity {
             }
         });
     }
-
 }

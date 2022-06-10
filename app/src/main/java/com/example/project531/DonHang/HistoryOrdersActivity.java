@@ -8,11 +8,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 import com.example.project531.Activity.MainActivity;
 import com.example.project531.Adapter.OrdersAdapter;
+import com.example.project531.ChartActivity;
 import com.example.project531.Domain.OrderItem;
 import com.example.project531.Interface.IClickOrder;
 import com.example.project531.Interface.ImplementJson;
@@ -29,11 +31,10 @@ public class HistoryOrdersActivity extends AppCompatActivity {
 
     private RecyclerView rcv_order_list;
     private RecyclerView.Adapter adapter;
-
     DetailOrderDialog detailOrderDialog;
-
     private RequestQueue mQueue;
     ParseURL parseURL;
+    LinearLayout chart_button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +53,14 @@ public class HistoryOrdersActivity extends AppCompatActivity {
         mQueue = Volley.newRequestQueue(this);
         parseURL = new ParseURL(mQueue);
 
+        Intent ixx = new Intent(this, ChartActivity.class);
+        chart_button = findViewById(R.id.chart_button);
+        chart_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(ixx);
+            }
+        });
         rcv_order_list = findViewById(R.id.rcv_order_list);
         recyclerViewListOrder();
     }
@@ -60,12 +69,8 @@ public class HistoryOrdersActivity extends AppCompatActivity {
 
     private void recyclerViewListOrder() {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-
         rcv_order_list.setLayoutManager(linearLayoutManager);
-
         ArrayList<OrderItem> orderlist = new ArrayList<>();
-
-
 
         parseURL.ParseData(MainActivity.connectURL+"/donhang/list", new ImplementJson() {
             @Override
@@ -77,6 +82,7 @@ public class HistoryOrdersActivity extends AppCompatActivity {
 
                         int ID = data.getInt("ID");
                         String NGAYDAT = data.getString("NGAYDAT");
+                        NGAYDAT = NGAYDAT.replace("T00:00:00.000Z","");
                         Double GIA = data.getDouble("GIA");
                         String TRANGTHAI = data.getString("TRANGTHAI");
 
@@ -87,7 +93,6 @@ public class HistoryOrdersActivity extends AppCompatActivity {
                         }
                         orderlist.add(new OrderItem(ID, NGAYDAT,  GIA, TRANGTHAI));
                     }
-
                     adapter = new OrdersAdapter(orderlist, new IClickOrder() {
                         @Override
                         public void clickItem(OrderItem orderItem) {
@@ -102,9 +107,5 @@ public class HistoryOrdersActivity extends AppCompatActivity {
                 }
             }
         });
-
-
-
     }
-
 }

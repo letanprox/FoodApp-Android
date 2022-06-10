@@ -49,28 +49,22 @@ public class HomeFragment extends Fragment {
     private RecyclerView.Adapter adapter, adapter2;
     private RecyclerView recyclerViewCategotyList, recyclerViewPopularList;
 
-
     private RequestQueue mQueue;
     ParseURL parseURL;
-
     EditText search_input;
-
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
         View view = inflater.inflate(R.layout.home_fragment, container, false);
         Intent i1 = new Intent(getActivity(), ProfileActivity.class);
 
         recyclerViewCategotyList = view.findViewById(R.id.view1);
         recyclerViewPopularList = view.findViewById(R.id.view2);
 
-
         avatar_btn = view.findViewById(R.id.avatar_btn);
         textView5 = view.findViewById(R.id.textView5);
         textView6 = view.findViewById(R.id.textView6);
-
         textView5.setText("Xin chào " + MainActivity.TEN);
 
         try {
@@ -79,8 +73,6 @@ public class HomeFragment extends Fragment {
                     .into(avatar_btn);
         }catch (Exception e){
         }
-
-
 
         avatar_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,8 +95,6 @@ public class HomeFragment extends Fragment {
                 startActivity(i2);
             }
         });
-
-
         search_input = view.findViewById(R.id.editTextTextPersonName);
         search_input.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -119,20 +109,14 @@ public class HomeFragment extends Fragment {
                 return handled;
             }
         });
-
-
         return view;
     }
 
 
 
-
-
     private void recyclerViewPopular() {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
-
         recyclerViewPopularList.setLayoutManager(linearLayoutManager);
-
         ArrayList<FoodDomain> foodlist = new ArrayList<>();
 
         parseURL.ParseData(MainActivity.connectURL+"/cuahang/dexuatlist", new ImplementJson() {
@@ -150,12 +134,10 @@ public class HomeFragment extends Fragment {
                     String VITRI = data.getString("VITRI");
                     Double GIATB = data.getDouble("GIATB");
                     String THOIGIANMO = data.getString("THOIGIANMO");
-                        int ID = data.getInt("ID");
+                    int ID = data.getInt("ID");
 
                     foodlist.add(new FoodDomain(ID,TEN, ANH, MOTA, GIATB, DANHGIA, 0, 0,0,VITRI,THOIGIANMO));
-
                 }
-
                     adapter2 = new RecommendedAdapter(foodlist,1);
                     recyclerViewPopularList.setAdapter(adapter2);
                 } catch (JSONException e) {
@@ -168,10 +150,7 @@ public class HomeFragment extends Fragment {
     private void recyclerViewCategoty() {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         recyclerViewCategotyList.setLayoutManager(linearLayoutManager);
-
-
         ArrayList<CategoryDomain> categoryList = new ArrayList<>();
-
         parseURL.ParseData(MainActivity.connectURL+"/loaisanpham/list", new ImplementJson() {
             @Override
             public void Done(JSONArray jsonArray) {
@@ -185,7 +164,6 @@ public class HomeFragment extends Fragment {
                         String ANH = data.getString("ANH");
 
                         categoryList.add(new CategoryDomain( ID, TEN, ANH));
-
                         adapter = new CategoryAdapter(categoryList);
                         recyclerViewCategotyList.setAdapter(adapter);
                     }
@@ -194,10 +172,5 @@ public class HomeFragment extends Fragment {
                 }
             }
         });
-
-
-
     }
-
-
 }

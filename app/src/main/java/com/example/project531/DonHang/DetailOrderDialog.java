@@ -3,6 +3,7 @@ package com.example.project531.DonHang;
 import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 
+import android.app.ProgressDialog;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -39,6 +40,7 @@ import com.example.project531.Domain.OrderItem;
 import com.example.project531.Interface.ImplementJson;
 import com.example.project531.API.ParseURL;
 import com.example.project531.R;
+import com.example.project531.SignupActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -58,11 +60,7 @@ public class DetailOrderDialog extends DialogFragment {
 
     private RequestQueue mQueue;
     ParseURL parseURL;
-
     OrderItem orderItem;
-
-
-
     TextView generatePDFbtn;
 
     int pageHeight = 1120;
@@ -75,57 +73,40 @@ public class DetailOrderDialog extends DialogFragment {
     ImageView image;
 
     List<String> listurl = new ArrayList<>();
-
     List<Bitmap> bitmapList = new ArrayList<>();
     List<Bitmap> bitmapscle = new ArrayList<>();
 
-
     ArrayList<FoodItem> foodlist;
-
+    ProgressDialog progressDialog;
 
     public DetailOrderDialog(OrderItem orderItem) {
         this.orderItem = orderItem;
     }
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.detail_order, container,false);
-
 
         rcv_detail_order = view.findViewById(R.id.rcv_detail_order);
         mQueue = Volley.newRequestQueue(getContext());
         parseURL = new ParseURL(mQueue);
         recyclerViewListFood();
 
-
-
-        // initializing our variables.
-//        listurl.add("https://deviet.vn/wp-content/uploads/2019/04/vuong-quoc-anh.jpg");
-//        listurl.add("https://deviet.vn/wp-content/uploads/2019/04/vuong-quoc-anh.jpg");
-
-
-
-
         generatePDFbtn = view.findViewById(R.id.generatePDFbtn);
         generatePDFbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // calling method to
-                // generate our PDF file.
+
+                progressDialog = new ProgressDialog(getContext());
+                progressDialog.show();
+                progressDialog.setContentView(R.layout.progress_dialog);
+                progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+
                 new GetImageFromUrl().execute();
-
-
             }
         });
-
-
         return view;
     }
-
-
-
-
 
 
     public class GetImageFromUrl extends AsyncTask<String, Void, Bitmap> {
@@ -139,7 +120,6 @@ public class DetailOrderDialog extends DialogFragment {
                 bitmap = BitmapFactory.decodeStream(inputStream);
             } catch (IOException e) {
                 e.printStackTrace();
-                Log.e("xxxx", e.getMessage());
             }
             return bitmap;
         }
@@ -150,7 +130,6 @@ public class DetailOrderDialog extends DialogFragment {
             count = count + 1;
             if(count == listurl.size()){
                 for (int i = 0; i < bitmapList.size(); i++){
-                    Log.e("xxx","xxxx");
                     bitmapscle.add(Bitmap.createScaledBitmap(bitmapList.get(i), 140, 140, false));
                 }
                 generatePDF();
@@ -159,9 +138,6 @@ public class DetailOrderDialog extends DialogFragment {
             }
         }
     }
-
-
-
 
     private void recyclerViewListFood() {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
@@ -172,7 +148,6 @@ public class DetailOrderDialog extends DialogFragment {
         parseURL.ParseData(MainActivity.connectURL + "/donhang_sanpham/list?id="+orderItem.getOrderNum(), new ImplementJson() {
             @Override
             public void Done(JSONArray jsonArray) {
-
                 try{
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject data = null;
@@ -184,30 +159,17 @@ public class DetailOrderDialog extends DialogFragment {
                         double GIA = data.getDouble("GIA");
 
                         foodlist.add(new FoodItem(1,TEN, ANH, "", GIA, SOLUONGBAN, SOLUONGBAN));
-
                         listurl.add(ANH);
                     }
-
                     //Log.e("xxx", MainActivity.connectURL + "/donhang_sanpham/list?id="+orderItem.getOrderNum());
-
                     adapter = new FoodListAdapterOrdered(foodlist);
                     rcv_detail_order.setAdapter(adapter);
-
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
         });
     }
-
-
-
-
-
-
-
-
-
 
 
 
@@ -220,13 +182,10 @@ public class DetailOrderDialog extends DialogFragment {
         Canvas canvas = myPage.getCanvas();
         title.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
 
-
-
-//IT START HERE:
+        //IT START HERE:
         title.setTextSize(30);
         title.setColor(ContextCompat.getColor(getContext(), R.color.black));
         title.setTextAlign(Paint.Align.CENTER);
-
 
         canvas.drawText("Đơn hàng: "+orderItem.getOrderNum(), 396, 70,title);
         canvas.drawText("Ngày: " + orderItem.getDate(), 396, 120,title);
@@ -234,20 +193,12 @@ public class DetailOrderDialog extends DialogFragment {
 
         title.setTextAlign(Paint.Align.LEFT);
         for (int i = 0; i < foodlist.size(); i++){
-
             canvas.drawBitmap(bitmapscle.get(i), 60, 200 + i*180, paint);
             canvas.drawText("Tên: "+foodlist.get(i).getTitle(), 233, 230 + i*180,title);
             canvas.drawText("Giá: "+foodlist.get(i).getFee() + "  x"+foodlist.get(i).getNumberInCart(), 230, 300 + i*180,title);
-
         }
 
-
-//END HERE:
-
-
-
-
-
+        //END HERE:
         pdfDocument.finishPage(myPage);
         File file = new File(Environment.getExternalStorageDirectory(), "GFG.pdf");
         try {
@@ -257,11 +208,7 @@ public class DetailOrderDialog extends DialogFragment {
             e.printStackTrace();
             Log.e("xxx",e.getMessage());
         }
+        progressDialog.dismiss();
         pdfDocument.close();
     }
-
-
-
-
-
 }

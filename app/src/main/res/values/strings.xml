@@ -4,7 +4,7 @@
     <string name="hint_password">Mật khẩu</string>
     <string name="button_sign_in">Đăng nhập</string>
     <string name="button_sign_up">Sign up</string>
-    <string name="button_send">Send</string>
+    <string name="button_send">Gửi</string>
     <string name="text_forgot_password">Quên mật khẩu?</string>
     <string name="text_signin_message">Xin Chào! Vui lòng đăng nhập</string>
     <string name="text_signin_social_media">Hoặc đăng nhập với Google</string>
@@ -13,12 +13,12 @@
     <string name="text_signup_terms">Khi đăng ký, bạn đã chấp nhận <b>Điều khoản và Dịch vụ</b></string>
     <string name="text_signup_message">Hello, let\'s set up your account</string>
 
-    <string name="text_forgot_password_title">Forgot password? No worries</string>
-    <string name="text_forgot_password_message">We will send you a link to reset your password</string>
+    <string name="text_forgot_password_title">Quên mật khẩu? Đừng lo lắng</string>
+    <string name="text_forgot_password_message">Nhập số điện thoại và chúng tôi sẽ gửi mã OTP cho bạn</string>
 
     <string name="hint_email">Email</string>
-    <string name="hint_phone">Phone</string>
-    <string name="hint_confirm_password">Confirm Password</string>
+    <string name="hint_phone">SDT</string>
+    <string name="hint_confirm_password">Xác nhận mật khẩu</string>
 
     <string name="key_map">AIzaSyAOgBomI03GHQ4C1qZJ2xdBy_U11eq3tR8</string>
 </resources>

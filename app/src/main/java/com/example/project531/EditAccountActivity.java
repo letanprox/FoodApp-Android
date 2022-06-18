@@ -64,7 +64,6 @@ public class EditAccountActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_account);
 
-
         Intent i = new Intent(this, ProfileActivity.class);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -73,7 +72,6 @@ public class EditAccountActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-
 
         mStorageRef = FirebaseStorage.getInstance().getReference("uploads");
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("uploads");
@@ -109,8 +107,6 @@ public class EditAccountActivity extends AppCompatActivity {
                 uploadFile(new ISignup() {
                     @Override
                     public void Done(String url) {
-                        Log.e("anh: ", url );
-
 
                         MainActivity.ANH = url;
                         MainActivity.EMAIL = et_email.getText().toString();
@@ -124,39 +120,23 @@ public class EditAccountActivity extends AppCompatActivity {
                                 et_email.getText().toString()
                         );
 
-
                         String Txturl =  URLEncoder.encode(url);
-//                            Log.e("ID", MainActivity.connectURL + "/users/insert?ten="+et_username.getText().toString()+"&anh="+url+"&email="+et_email.getText().toString()+"&matkhau="+et_password.getText().toString()+"&sdt="+et_phone.getText().toString());
-                        parseURL.ParseData(MainActivity.connectURL + "/users/update?ten="+et_username.getText().toString()+"&anh="+Txturl+"&email="+et_email.getText().toString()+"&sdt="+et_phone.getText().toString()+"&id="+MainActivity.ID_USER, new ImplementJson() {
+
+                        //API GET DATA
+                        parseURL.ParseData(MainActivity.connectURL + "/api/user/update?ten="+et_username.getText().toString()+"&anh="+Txturl+"&email="+et_email.getText().toString()+"&sdt="+et_phone.getText().toString()+"&id="+MainActivity.ID_USER, new ImplementJson() {
                             @Override
                             public void Done(JSONArray jsonArray) {
-
-
-
                             }
                         });
-
-
-
-
 
                         progressDialog.dismiss();
                         Intent ok = new Intent(EditAccountActivity.this, ProfileActivity.class);
                         startActivity(ok);
-
-
-
-
                     }
                 });
             }
         });
-
-
     }
-
-
-
 
     private void openFileChooser() {
         Intent intent = new Intent();
@@ -165,11 +145,9 @@ public class EditAccountActivity extends AppCompatActivity {
         startActivityForResult(intent, PICK_IMAGE_REQUEST);
     }
 
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK
                 && data != null && data.getData() != null) {
             mImageUri = data.getData();
@@ -177,20 +155,17 @@ public class EditAccountActivity extends AppCompatActivity {
         }
     }
 
-
     private String getFileExtension(Uri uri) {
         ContentResolver cR = getContentResolver();
         MimeTypeMap mime = MimeTypeMap.getSingleton();
         return mime.getExtensionFromMimeType(cR.getType(uri));
     }
 
-
     private void uploadFile(ISignup iSignup) {
         progressDialog = new ProgressDialog(EditAccountActivity.this);
         progressDialog.show();
         progressDialog.setContentView(R.layout.progress_dialog);
         progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
-
         if (mImageUri != null) {
             StorageReference fileReference = mStorageRef.child(System.currentTimeMillis()
                     + "." + getFileExtension(mImageUri));
@@ -199,16 +174,13 @@ public class EditAccountActivity extends AppCompatActivity {
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-
                             fileReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                 @Override
                                 public void onSuccess(Uri uri) {
                                     iSignup.Done(String.valueOf( uri.toString()));
                                 }
                             });
-
                             Toast.makeText(EditAccountActivity.this, "Upload successful", Toast.LENGTH_LONG).show();
-
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
@@ -226,6 +198,4 @@ public class EditAccountActivity extends AppCompatActivity {
             Toast.makeText(this, "No file selected", Toast.LENGTH_SHORT).show();
         }
     }
-
-
 }

@@ -50,12 +50,9 @@ public class ForgotPasswordActivity extends AppCompatActivity {
         button_signin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
-
                 String sdt = (String) getIntent().getSerializableExtra("stringsearch");
 
-                parseURL.ParseData(MainActivity.connectURL + "/users/getphone?sdt="+sdt, new ImplementJson() {
+                parseURL.ParseData(MainActivity.connectURL + "/api/user/getphone?sdt="+sdt, new ImplementJson() {
                     @Override
                     public void Done(JSONArray jsonArray) {
                         try{
@@ -85,13 +82,6 @@ public class ForgotPasswordActivity extends AppCompatActivity {
                         }
                     }
                 });
-
-
-
-
-
-
-
                 startActivity(ixxx);
             }
         });

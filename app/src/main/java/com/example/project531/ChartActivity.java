@@ -58,7 +58,8 @@ public class ChartActivity extends AppCompatActivity {
             }
         });
 
-        parseURL.ParseData(MainActivity.connectURL + "/orders/getchartdata", new ImplementJson() {
+        //GET DATA USER DON HANG:
+        parseURL.ParseData(MainActivity.connectURL + "/api/user/donhang/chartdata", new ImplementJson() {
             @Override
             public void Done(JSONArray jsonArray) {
                 try{

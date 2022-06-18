@@ -42,7 +42,7 @@
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyAOgBomI03GHQ4C1qZJ2xdBy_U11eq3tR8" />
+            android:value="AIzaSyCSkpxQ-EebVWzfjYeJrBi0H7sdvW__DdM" />
 
         <activity
             android:name=".Activity.ListFoodActivity"

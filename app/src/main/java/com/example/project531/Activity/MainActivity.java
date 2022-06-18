@@ -57,7 +57,8 @@ public class MainActivity extends AppCompatActivity {
 
     public static Database database;
 
-    public static String connectURL = "http://192.168.1.104:4000";
+    public static String connectURL = "http://192.168.1.110:4000";
+    public static String IP = "192.168.1.110";
     public static String DIACHI = "";
     public static int ID_USER = 0;
     public static String ANH = "";
@@ -149,11 +150,11 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-        if (checkPermission()) {
-            Toast.makeText(this, "Permission Granted", Toast.LENGTH_SHORT).show();
-        } else {
-            requestPermission();
-        }
+//        if (checkPermission()) {
+//            Toast.makeText(this, "Permission Granted", Toast.LENGTH_SHORT).show();
+//        } else {
+//            requestPermission();
+//        }
     }
 
     private int getFragmentIndex(Fragment fragment) {
@@ -217,18 +218,18 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if (requestCode == PERMISSION_REQUEST_CODE) {
-            if (grantResults.length > 0) {
-                boolean writeStorage = grantResults[0] == PackageManager.PERMISSION_GRANTED;
-                boolean readStorage = grantResults[1] == PackageManager.PERMISSION_GRANTED;
-                if (writeStorage && readStorage) {
-                    Toast.makeText(this, "Permission Granted..", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(this, "Permission Denined.", Toast.LENGTH_SHORT).show();
-                    finish();
-                }
-            }
-        }
+//        if (requestCode == PERMISSION_REQUEST_CODE) {
+//            if (grantResults.length > 0) {
+//                boolean writeStorage = grantResults[0] == PackageManager.PERMISSION_GRANTED;
+//                boolean readStorage = grantResults[1] == PackageManager.PERMISSION_GRANTED;
+//                if (writeStorage && readStorage) {
+//                    //Toast.makeText(this, "Permission Granted..", Toast.LENGTH_SHORT).show();
+//                } else {
+//                    //Toast.makeText(this, "Permission Denined.", Toast.LENGTH_SHORT).show();
+//                    finish();
+//                }
+//            }
+//        }
     }
-
+//AIzaSyAOgBomI03GHQ4C1qZJ2xdBy_U11eq3tR8
 }

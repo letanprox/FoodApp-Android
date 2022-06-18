@@ -113,13 +113,13 @@ public class HomeFragment extends Fragment {
     }
 
 
-
+    //API GET DATA DE XUAT CUA HANG:
     private void recyclerViewPopular() {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         recyclerViewPopularList.setLayoutManager(linearLayoutManager);
         ArrayList<FoodDomain> foodlist = new ArrayList<>();
 
-        parseURL.ParseData(MainActivity.connectURL+"/cuahang/dexuatlist", new ImplementJson() {
+        parseURL.ParseData(MainActivity.connectURL+"/api/cuahang/dexuat/list", new ImplementJson() {
             @Override
             public void Done(JSONArray jsonArray) {
                 try{
@@ -135,6 +135,7 @@ public class HomeFragment extends Fragment {
                     Double GIATB = data.getDouble("GIATB");
                     String THOIGIANMO = data.getString("THOIGIANMO");
                     int ID = data.getInt("ID");
+                    ANH = ANH.replace("localhost",MainActivity.IP);
 
                     foodlist.add(new FoodDomain(ID,TEN, ANH, MOTA, GIATB, DANHGIA, 0, 0,0,VITRI,THOIGIANMO));
                 }
@@ -147,11 +148,13 @@ public class HomeFragment extends Fragment {
         });
     }
 
+
+    //API GET DATA LOAI CUA HANG
     private void recyclerViewCategoty() {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         recyclerViewCategotyList.setLayoutManager(linearLayoutManager);
         ArrayList<CategoryDomain> categoryList = new ArrayList<>();
-        parseURL.ParseData(MainActivity.connectURL+"/loaisanpham/list", new ImplementJson() {
+        parseURL.ParseData(MainActivity.connectURL+"/api/loaicuahang/list", new ImplementJson() {
             @Override
             public void Done(JSONArray jsonArray) {
                 try{

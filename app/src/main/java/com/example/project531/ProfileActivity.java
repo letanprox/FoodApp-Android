@@ -190,9 +190,6 @@ public class ProfileActivity extends AppCompatActivity implements OnMapReadyCall
         logout_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
-
                 googleSignInClient = GoogleSignIn.getClient(ProfileActivity.this, GoogleSignInOptions.DEFAULT_SIGN_IN);
                 googleSignInClient.signOut().addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
@@ -206,7 +203,6 @@ public class ProfileActivity extends AppCompatActivity implements OnMapReadyCall
                         }
                     }
                 });
-
 
                 MainActivity.database.QueryData("DELETE FROM Userx");
                 Toast.makeText(getApplicationContext(), "logout", Toast.LENGTH_SHORT).show();
@@ -227,7 +223,6 @@ public class ProfileActivity extends AppCompatActivity implements OnMapReadyCall
     }
 
     private void getCurrentLocation() {
-
         Task<Location> task = client.getLastLocation();
         MainActivity.CURRENT_LOCATION = "";
         task.addOnSuccessListener(new OnSuccessListener<Location>() {
@@ -247,10 +242,8 @@ public class ProfileActivity extends AppCompatActivity implements OnMapReadyCall
                                 }
                                 else {
                                     txt_address.setText(addresses.get(0).getAdminArea() + ", " + addresses.get(0).getCountryName());
-
                                     MainActivity.DIACHI = addresses.get(0).getAdminArea() + ", " + addresses.get(0).getCountryName();
-                                    Log.e("xxxx",addresses.get(0).getFeatureName() + ", " + addresses.get(0).getLocality() +", " + addresses.get(0).getAdminArea() + ", " + addresses.get(0).getCountryName());
-
+                                    //Log.e("xxxx",addresses.get(0).getFeatureName() + ", " + addresses.get(0).getLocality() +", " + addresses.get(0).getAdminArea() + ", " + addresses.get(0).getCountryName());
                                 }
                             } catch (IOException e) {
                                 e.printStackTrace();
@@ -286,29 +279,6 @@ public class ProfileActivity extends AppCompatActivity implements OnMapReadyCall
         }else {
             OpenMap(MainActivity.CURRENT_LOCATION);
         }
-//        Geocoder geocoder = new Geocoder(this, Locale.getDefault());
-//        List addressList = null;
-//        try {
-//            addressList = geocoder.getFromLocationName("97 Man Thiện, Hiệp Phú, Hồ Chí Minh",1);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        if (addressList != null && addressList.size() > 0){
-//            Address address = (Address) addressList.get(0);
-//            StringBuilder stringBuilder = new StringBuilder();
-//            x = (address.getLatitude());
-//            y = (address.getLongitude());
-//        }
-//
-//        Log.e("", x + " " + y);
-//
-//        x = Double.parseDouble(String.valueOf(x));
-//        y = Double.parseDouble(String.valueOf(y));
-//
-//        map = googleMap;
-//        LatLng Hocvien = new LatLng(x,y);
-//        map.addMarker(new MarkerOptions().position(Hocvien).title("Bun Thai"));
-//        map.moveCamera(CameraUpdateFactory.newLatLngZoom(Hocvien,11));
     }
 
 

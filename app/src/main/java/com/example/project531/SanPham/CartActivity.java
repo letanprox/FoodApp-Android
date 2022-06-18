@@ -83,7 +83,7 @@ public class CartActivity extends AppCompatActivity {
         recyclerViewListFood();
 
 
-        //API POST:
+        //API POST INSER DON HANG:
         payment_btn = findViewById(R.id.payment_btn);
         payment_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,7 +92,7 @@ public class CartActivity extends AppCompatActivity {
                 for (int i = 0; i < foodlist.size(); i++){
                     params.put(Integer.toString(foodlist.get(i).getId()), Integer.toString(foodlist.get(i).getNumberInCart()));
                 }
-                parseURLPost.ParseData(MainActivity.connectURL+"/donhang/insert?gia="+pricetotal, new ImplementJson() {
+                parseURLPost.ParseData(MainActivity.connectURL+"/api/user/donhang/insert?gia="+pricetotal, new ImplementJson() {
                     @Override
                     public void Done(JSONArray jsonArray) {
                     }

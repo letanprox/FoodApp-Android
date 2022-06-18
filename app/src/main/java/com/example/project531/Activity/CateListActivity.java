@@ -61,12 +61,13 @@ public class CateListActivity extends AppCompatActivity {
     }
 
 
+    //API GET DATA CUA HANG CUA LOAI SAN PHAM:
     private void recyclerViewPopular() {
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 2);
         recyclerViewPopularList.setLayoutManager(mLayoutManager);
         ArrayList<FoodDomain> foodlist = new ArrayList<>();
 
-        parseURL.ParseData(MainActivity.connectURL+"/cuahang/cate?idsp="+object.getId(), new ImplementJson() {
+        parseURL.ParseData(MainActivity.connectURL+"/api/loaicuahang/cuahang/list?idsp="+object.getId(), new ImplementJson() {
             @Override
             public void Done(JSONArray jsonArray) {
                 try{

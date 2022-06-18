@@ -59,7 +59,7 @@ public class ListFoodActivity extends AppCompatActivity {
         recyclerViewPopularList.setLayoutManager(mLayoutManager);
         ArrayList<FoodDomain> foodlist = new ArrayList<>();
 
-        parseURL.ParseData(MainActivity.connectURL+"/cuahang/dexuatlist", new ImplementJson() {
+        parseURL.ParseData(MainActivity.connectURL+"/api/cuahang/dexuat/list", new ImplementJson() {
             @Override
             public void Done(JSONArray jsonArray) {
                 try{
@@ -75,6 +75,7 @@ public class ListFoodActivity extends AppCompatActivity {
                         Double GIATB = data.getDouble("GIATB");
                         String THOIGIANMO = data.getString("THOIGIANMO");
                         int ID = data.getInt("ID");
+                        ANH = ANH.replace("localhost",MainActivity.IP);
 
                         foodlist.add(new FoodDomain(ID,TEN, ANH, MOTA, GIATB, DANHGIA, 0, 0,0,VITRI,THOIGIANMO));
                     }

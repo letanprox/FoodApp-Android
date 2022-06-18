@@ -77,15 +77,6 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.ViewHo
             }
         });
 
-//        int drawableReourceId = holder.itemView.getContext().getResources()
-//                .getIdentifier(itemArrayList.get(position).getPic(), "drawable",
-//                        holder.itemView.getContext().getPackageName());
-//
-//        Glide.with(holder.itemView.getContext())
-//                .load(drawableReourceId)
-//                .into(holder.image_food);
-
-
         Picasso.get()
                 .load(itemArrayList.get(position).getPic())
                 .fit()

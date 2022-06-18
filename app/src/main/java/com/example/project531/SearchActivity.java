@@ -27,27 +27,20 @@ import java.util.ArrayList;
 
 public class SearchActivity extends AppCompatActivity {
 
-
     private RecyclerView  recyclerViewPopularList;
     private RecyclerView.Adapter  adapter2;
-
     private RequestQueue mQueue;
     ParseURL parseURL;
-
     String setxt;
-
     TextView textView13;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
-
         mQueue = Volley.newRequestQueue(this);
         parseURL = new ParseURL(mQueue);
-
         recyclerViewPopularList = findViewById(R.id.recommended_list);
 
         Intent i = new Intent(this, MainActivity.class);
@@ -59,35 +52,23 @@ public class SearchActivity extends AppCompatActivity {
             }
         });
 
-
         setxt = (String) getIntent().getSerializableExtra("stringsearch");
-
         textView13 = findViewById(R.id.textView13);
         textView13.setText("Tìm kiếm: "+ setxt);
         //Toast.makeText(this, (String) getIntent().getSerializableExtra("stringsearch"), Toast.LENGTH_LONG).show();
 
         recyclerViewPopular();
-
-
     }
 
 
 
-
-
-
-
-
-
-
-
+    ///API GET CUA HANG LIST:
     private void recyclerViewPopular() {
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 2);
         recyclerViewPopularList.setLayoutManager(mLayoutManager);
-
         ArrayList<FoodDomain> foodlist = new ArrayList<>();
 
-        parseURL.ParseData(MainActivity.connectURL+"/cuahang/timkiemlist?setxt="+setxt, new ImplementJson() {
+        parseURL.ParseData(MainActivity.connectURL+"/api/cuahang/timkiem/list?setxt="+setxt, new ImplementJson() {
             @Override
             public void Done(JSONArray jsonArray) {
                 try{
@@ -105,7 +86,6 @@ public class SearchActivity extends AppCompatActivity {
                         int ID = data.getInt("ID");
 
                         foodlist.add(new FoodDomain(ID,TEN, ANH, MOTA, GIATB, DANHGIA, 0, 0,0,VITRI,THOIGIANMO));
-
                     }
 
                     adapter2 = new RecommendedAdapter(foodlist,2);

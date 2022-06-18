@@ -86,19 +86,17 @@ public class ShowDetailActivity extends AppCompatActivity   {
                 startActivity(i);
             }
         });
-
         mQueue = Volley.newRequestQueue(this);
         parseURL = new ParseURL(mQueue);
-
         object = (FoodDomain) getIntent().getSerializableExtra("object");
         foodDomain = object;
-
         iniView();
         getBundle();
-
         foodlist = new ArrayList<>();
 
-        parseURL.ParseData(MainActivity.connectURL+"/sanpham/list?id="+foodDomain.getID(), new ImplementJson() {
+
+        //API GET DS SAN PHAM THEO CUA HANG:
+        parseURL.ParseData(MainActivity.connectURL+"/api/cuahang/sanpham/list?id="+foodDomain.getID(), new ImplementJson() {
             @Override
             public void Done(JSONArray jsonArray) {
                 try{
@@ -111,9 +109,9 @@ public class ShowDetailActivity extends AppCompatActivity   {
                         String ANH = data.getString("ANH");
                         int SOLUONGBAN = data.getInt("SOLUONGBAN");
                         double GIA = data.getDouble("GIA");
+                        ANH = ANH.replace("localhost",MainActivity.IP);
 
                         foodlist.add(new FoodItem(ID,TEN, ANH, "", GIA, SOLUONGBAN, 0));
-
                         adapterZero = new FoodListAdapter(foodlist,
                             new IEventAddCart() {
                                 @Override
@@ -181,8 +179,9 @@ public class ShowDetailActivity extends AppCompatActivity   {
         openBottomSheetLabelCart();
 
 
+        //API NUT LUU CUA HANG:
         item_book_mark = findViewById(R.id.item_book_mark);
-        parseURL.ParseData(MainActivity.connectURL+"/checksave?iduser="+MainActivity.ID_USER+"&idch="+foodDomain.getID(), new ImplementJson() {
+        parseURL.ParseData(MainActivity.connectURL+"/api/user/cuahang/checksave?iduser="+MainActivity.ID_USER+"&idch="+foodDomain.getID(), new ImplementJson() {
             @Override
             public void Done(JSONArray jsonArray) {
 
@@ -222,7 +221,7 @@ public class ShowDetailActivity extends AppCompatActivity   {
                 if(book_state == 1){
                     book_state = 0;
                     item_book_mark.setImageResource(R.drawable.ic_book_mark1);
-                    parseURL.ParseData(MainActivity.connectURL+"/updatesave?iduser="+MainActivity.ID_USER+"&idch="+foodDomain.getID()+"&mark="+0+"&danhgia="+rating, new ImplementJson() {
+                    parseURL.ParseData(MainActivity.connectURL+"/api/user/cuahang/updatesave?iduser="+MainActivity.ID_USER+"&idch="+foodDomain.getID()+"&mark="+0+"&danhgia="+rating, new ImplementJson() {
                         @Override
                         public void Done(JSONArray jsonArray) {
                         }
@@ -231,13 +230,13 @@ public class ShowDetailActivity extends AppCompatActivity   {
                     book_state = 1;
                     item_book_mark.setImageResource(R.drawable.ic_book_mark);
                     if(is_have == 1){
-                        parseURL.ParseData(MainActivity.connectURL+"/updatesave?iduser="+MainActivity.ID_USER+"&idch="+foodDomain.getID()+"&mark="+1+"&danhgia="+rating, new ImplementJson() {
+                        parseURL.ParseData(MainActivity.connectURL+"/api/user/cuahang/updatesave?iduser="+MainActivity.ID_USER+"&idch="+foodDomain.getID()+"&mark="+1+"&danhgia="+rating, new ImplementJson() {
                             @Override
                             public void Done(JSONArray jsonArray) {
                             }
                         });
                     }else {
-                        parseURL.ParseData(MainActivity.connectURL+"/insertsave?iduser="+MainActivity.ID_USER+"&idch="+foodDomain.getID()+"&mark="+1+"&danhgia="+rating, new ImplementJson() {
+                        parseURL.ParseData(MainActivity.connectURL+"/api/user/cuahang/insertsave?iduser="+MainActivity.ID_USER+"&idch="+foodDomain.getID()+"&mark="+1+"&danhgia="+rating, new ImplementJson() {
                             @Override
                             public void Done(JSONArray jsonArray) {
                             }

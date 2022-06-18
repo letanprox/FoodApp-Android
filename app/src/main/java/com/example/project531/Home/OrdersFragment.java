@@ -50,22 +50,16 @@ public class OrdersFragment extends Fragment {
     }
 
 
+
+    //GET API DS CỬA HÀNG USER DÃ LƯU:
     private void recyclerViewListFood() {
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getContext(), 2);
-
         rcv_book_mark.setLayoutManager(mLayoutManager);
-
         ArrayList<FoodDomain> foodlist = new ArrayList<>();
-//        foodlist.add(new FoodDomain("Pepperoni pizza", "pizza1", "slices pepperoni ,mozzarella cheese, fresh oregano,  ground black pepper, pizza sauce", 13.0, 5, 20, 1000));
-//        foodlist.add(new FoodDomain("Chesse Burger", "burger", "beef, Gouda Cheese, Special sauce, Lettuce, tomato ", 15.20, 4, 18, 1500));
-//        foodlist.add(new FoodDomain("Vagetable pizza", "pizza3", " olive oil, Vegetable oil, pitted Kalamata, cherry tomatoes, fresh oregano, basil", 11.0, 3, 16, 800));
-//
 
-        parseURL.ParseData(MainActivity.connectURL+"/getsave?iduser="+MainActivity.ID_USER, new ImplementJson() {
+        parseURL.ParseData(MainActivity.connectURL+"/api/user/cuahang/save/list?iduser="+MainActivity.ID_USER, new ImplementJson() {
             @Override
             public void Done(JSONArray jsonArray) {
-
-                Log.e("",MainActivity.connectURL+"/getsave?iduser="+MainActivity.ID_USER);
                 try{
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject data = null;
@@ -79,6 +73,7 @@ public class OrdersFragment extends Fragment {
                         Double GIATB = data.getDouble("GIATB");
                         String THOIGIANMO = data.getString("THOIGIANMO");
                         int ID = data.getInt("ID");
+                        ANH = ANH.replace("localhost",MainActivity.IP);
 
                         foodlist.add(new FoodDomain(ID,TEN, ANH, MOTA, GIATB, DANHGIA, 0, 0,0,VITRI,THOIGIANMO));
                     }
@@ -91,7 +86,5 @@ public class OrdersFragment extends Fragment {
                 }
             }
         });
-
-
     }
 }

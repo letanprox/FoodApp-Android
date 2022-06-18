@@ -121,8 +121,7 @@ public class LoginActivity extends AppCompatActivity {
                 progressDialog.setContentView(R.layout.progress_dialog);
                 progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
 
-//                Log.e("xxx", MainActivity.connectURL + "/users/get?ten="+et_username.getText().toString()+"&matkhau="+et_password.getText().toString());
-                parseURL.ParseData(MainActivity.connectURL + "/users/get?ten="+et_username.getText().toString()+"&matkhau="+et_password.getText().toString(), new ImplementJson() {
+                parseURL.ParseData(MainActivity.connectURL + "/api/users/get?ten="+et_username.getText().toString()+"&matkhau="+et_password.getText().toString(), new ImplementJson() {
                     @Override
                     public void Done(JSONArray jsonArray) {
                         try{
@@ -178,18 +177,14 @@ public class LoginActivity extends AppCompatActivity {
                         firebaseAuth.signInWithCredential(authCredential).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
-
-
                                 if(task.isSuccessful()){
-
                                     //REDIRECT
-
                                     firebaseAuth = FirebaseAuth.getInstance();
                                     FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
                                     if(firebaseUser != null){
                                         Log.e("anh dai dien:" , String.valueOf(firebaseUser.getPhotoUrl()));
 
-                                        parseURL.ParseData(MainActivity.connectURL + "/googleauth?ten="+String.valueOf(firebaseUser.getDisplayName())+"&email="+String.valueOf(firebaseUser.getEmail())+"&anh="+String.valueOf(firebaseUser.getPhotoUrl()), new ImplementJson() {
+                                        parseURL.ParseData(MainActivity.connectURL + "/api/user/googleauth?ten="+String.valueOf(firebaseUser.getDisplayName())+"&email="+String.valueOf(firebaseUser.getEmail())+"&anh="+String.valueOf(firebaseUser.getPhotoUrl()), new ImplementJson() {
                                             @Override
                                             public void Done(JSONArray jsonArray) {
                                                 try{
@@ -236,7 +231,6 @@ public class LoginActivity extends AppCompatActivity {
                     e.printStackTrace();
 
                 }
-
             }
         }
     }

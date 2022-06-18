@@ -139,13 +139,15 @@ public class DetailOrderDialog extends DialogFragment {
         }
     }
 
+
+    //API GET LIST SAN PHAM CUA DON HANG:
     private void recyclerViewListFood() {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
 
         rcv_detail_order.setLayoutManager(linearLayoutManager);
         foodlist = new ArrayList<>();
 
-        parseURL.ParseData(MainActivity.connectURL + "/donhang_sanpham/list?id="+orderItem.getOrderNum(), new ImplementJson() {
+        parseURL.ParseData(MainActivity.connectURL + "/api/user/donhang/sanpham/list?id="+orderItem.getOrderNum(), new ImplementJson() {
             @Override
             public void Done(JSONArray jsonArray) {
                 try{
@@ -161,7 +163,6 @@ public class DetailOrderDialog extends DialogFragment {
                         foodlist.add(new FoodItem(1,TEN, ANH, "", GIA, SOLUONGBAN, SOLUONGBAN));
                         listurl.add(ANH);
                     }
-                    //Log.e("xxx", MainActivity.connectURL + "/donhang_sanpham/list?id="+orderItem.getOrderNum());
                     adapter = new FoodListAdapterOrdered(foodlist);
                     rcv_detail_order.setAdapter(adapter);
                 } catch (JSONException e) {

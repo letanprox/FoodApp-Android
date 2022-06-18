@@ -67,12 +67,13 @@ public class HistoryOrdersActivity extends AppCompatActivity {
 
 
 
+    ///API GET LIST DON HANG:
     private void recyclerViewListOrder() {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         rcv_order_list.setLayoutManager(linearLayoutManager);
         ArrayList<OrderItem> orderlist = new ArrayList<>();
 
-        parseURL.ParseData(MainActivity.connectURL+"/donhang/list", new ImplementJson() {
+        parseURL.ParseData(MainActivity.connectURL+"/api/user/donhang/list", new ImplementJson() {
             @Override
             public void Done(JSONArray jsonArray) {
                 try{

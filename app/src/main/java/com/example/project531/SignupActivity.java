@@ -108,7 +108,7 @@ public class SignupActivity extends AppCompatActivity {
                         Log.e("anh: ", url );
                         String Txturl =  URLEncoder.encode(url);
 //                            Log.e("ID", MainActivity.connectURL + "/users/insert?ten="+et_username.getText().toString()+"&anh="+url+"&email="+et_email.getText().toString()+"&matkhau="+et_password.getText().toString()+"&sdt="+et_phone.getText().toString());
-                            parseURL.ParseData(MainActivity.connectURL + "/users/insert?ten="+et_username.getText().toString()+"&anh="+Txturl+"&email="+et_email.getText().toString()+"&matkhau="+et_password.getText().toString()+"&sdt="+et_phone.getText().toString(), new ImplementJson() {
+                            parseURL.ParseData(MainActivity.connectURL + "/api/user/insert?ten="+et_username.getText().toString()+"&anh="+Txturl+"&email="+et_email.getText().toString()+"&matkhau="+et_password.getText().toString()+"&sdt="+et_phone.getText().toString(), new ImplementJson() {
                                 @Override
                                 public void Done(JSONArray jsonArray) {
                                     try{
@@ -144,7 +144,6 @@ public class SignupActivity extends AppCompatActivity {
             }
         });
     }
-
 
     private void openFileChooser() {
         Intent intent = new Intent();

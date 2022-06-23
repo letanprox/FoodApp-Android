@@ -57,8 +57,8 @@ public class MainActivity extends AppCompatActivity {
 
     public static Database database;
 
-    public static String connectURL = "http://192.168.1.110:4000";
-    public static String IP = "192.168.1.110";
+    public static String connectURL = "http://192.168.1.22:4000";
+    public static String IP = "192.168.1.22";
     public static String DIACHI = "";
     public static int ID_USER = 0;
     public static String ANH = "";

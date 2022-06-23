@@ -1,5 +1,8 @@
 # FoodApp-Android
 
+Download file to know more detail about Project:[THONGTINDOAN.pdf](https://github.com/letanprox/FoodApp-Android/files/8968860/THONGTINDOAN.pdf)
+
+
 
 <img width="294" alt="Screen Shot 2022-06-20 at 11 44 10" src="https://user-images.githubusercontent.com/54614140/175342342-531526e8-5157-4992-841b-fb632400ea90.png"><img width="294" alt="Screen Shot 2022-06-20 at 11 45 39" src="https://user-images.githubusercontent.com/54614140/175342372-82898f19-5f57-4960-9415-565d6d8841a2.png">
 <img width="294" alt="Screen Shot 2022-06-20 at 11 45 58" src="https://user-images.githubusercontent.com/54614140/175342386-6a6fc97e-100e-43d1-851a-25ed45a5e387.png">

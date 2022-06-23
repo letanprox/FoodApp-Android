@@ -1,8 +1,7 @@
 # FoodApp-Android
 
 
-<img width="294" alt="Screen Shot 2022-06-20 at 11 44 10" src="https://user-images.githubusercontent.com/54614140/175342342-531526e8-5157-4992-841b-fb632400ea90.png">
-<img width="294" alt="Screen Shot 2022-06-20 at 11 45 39" src="https://user-images.githubusercontent.com/54614140/175342372-82898f19-5f57-4960-9415-565d6d8841a2.png">
+<img width="294" alt="Screen Shot 2022-06-20 at 11 44 10" src="https://user-images.githubusercontent.com/54614140/175342342-531526e8-5157-4992-841b-fb632400ea90.png"><img width="294" alt="Screen Shot 2022-06-20 at 11 45 39" src="https://user-images.githubusercontent.com/54614140/175342372-82898f19-5f57-4960-9415-565d6d8841a2.png">
 <img width="294" alt="Screen Shot 2022-06-20 at 11 45 58" src="https://user-images.githubusercontent.com/54614140/175342386-6a6fc97e-100e-43d1-851a-25ed45a5e387.png">
 <img width="295" alt="Screen Shot 2022-06-20 at 11 46 14" src="https://user-images.githubusercontent.com/54614140/175342387-f5a97624-011b-41b7-8a56-6a987a7042c4.png">
 <img width="293" alt="Screen Shot 2022-06-20 at 11 46 36" src="https://user-images.githubusercontent.com/54614140/175342390-8a2ae743-2aad-4cd8-b2a5-18c04de61f59.png">
